@@ -1,0 +1,52 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+    "CdpRevision": {
+      "BaseUrl": "/",
+      "LastChangedTimeString": "2021-01-22T01:16:08.7120000Z",
+      "RevisionNumber": 1
+    },
+    "ConnectedDataSourceInfoNameMapping": {
+      "{Attachments}": "Attachments",
+      "{Attachments}@odata.type": "{Attachments} ({Attachments}@odata.type)",
+      "{FilenameWithExtension}": "File name with extension",
+      "{FullPath}": "Full Path",
+      "{HasAttachments}": "Has attachments",
+      "{Identifier}": "Identifier",
+      "{IsFolder}": "IsFolder",
+      "{Link}": "Link to item",
+      "{ModerationComment}": "Comments associated with the content approval of this list item",
+      "{ModerationStatus}": "Content approval status",
+      "{Name}": "Name",
+      "{Path}": "Folder path",
+      "{Thumbnail}": "Thumbnail",
+      "{TriggerWindowEndToken}": "Trigger Window End Token",
+      "{TriggerWindowStartToken}": "Trigger Window Start Token",
+      "{VersionNumber}": "Version number",
+      "Author": "Created By",
+      "Author#Claims": "Created By Claims",
+      "ComplianceAssetId": "Compliance Asset Id",
+      "Created": "Created",
+      "DeskNumber": "DeskNumber",
+      "Editor": "Modified By",
+      "Editor#Claims": "Modified By Claims",
+      "FloorNumber": "FloorNumber",
+      "FloorPlanUrl": "FloorPlanUrl",
+      "ID": "ID",
+      "Location": "LocationID",
+      "Location#Id": "LocationID Id",
+      "Location_x003a_Building": "Location:Building",
+      "Location_x003a_Building#Id": "Location:Building Id",
+      "Location_x003a_City": "Location:City",
+      "Location_x003a_City#Id": "Location:City Id",
+      "Modified": "Modified",
+      "Title": "Title"
+    },
+    "DatasetName": "https://033gc.sharepoint.com/sites/OfficeBooking-RelationalImplementation",
+    "EncodeDataset": true,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "Name": "Desks",
+    "Type": "ConnectedDataSourceInfo"
+  }
+]

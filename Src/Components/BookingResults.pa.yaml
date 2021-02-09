@@ -1,0 +1,147 @@
+BookingResults As CanvasComponent:
+    DeskItems: |-
+        =Table(
+            {   
+                ID: 1,
+                DeskNumber: 111,
+                FloorNumber: 1,
+                'Location:Building': "235 Queen St.",
+                //'Location:Floor': 1,
+                FloorPlanUrl: "https://static.dezeen.com/uploads/2019/05/pocket-living-offices-threefold-architects-london-uk_dezeen_floor-plan.jpg"
+            },
+            {
+                ID: 2,
+                DeskNumber: 222,
+                FloorNumber: 2,
+                'Location:Building': "239 Queen St.",
+                //'Location:Floor': 2,
+                FloorPlanUrl: "https://static.dezeen.com/uploads/2019/05/pocket-living-offices-threefold-architects-london-uk_dezeen_floor-plan.jpg"
+            },
+            {
+                ID: 3,
+                DeskNumber: 333,
+                FloorNumber: 3,
+                'Location:Building': "233 Queen St.",
+                //'Location:Floor': 3,
+                FloorPlanUrl: "https://static.dezeen.com/uploads/2019/05/pocket-living-offices-threefold-architects-london-uk_dezeen_floor-plan.jpg"
+            }
+        )
+    PopUpData: =_PopUpData
+    BookingDetailsPage: =App.ActiveScreen
+    SelectedItem: =Gallery6.Selected
+    ZIndex: =1
+    Y: =0
+    X: =0
+    Width: =640
+    Height: =640
+    Fill: =RGBA(230, 230, 230, 1)
+    OnReset: =Set(_PopUpData, {});
+
+    Gallery6 As gallery.galleryVertical:
+        Items: =BookingResults.DeskItems
+        TemplateSize: =114
+        TemplatePadding: =0
+        Layout: =Layout.Vertical
+        Height: =Parent.Height
+        Width: =Parent.Width
+        ZIndex: =2
+
+        DeskCard As rectangle:
+            Width: =Parent.Width
+            ZIndex: =2
+            Height: =106
+            Y: =7
+            Fill: =RGBA(255, 255, 255, 1)
+            FocusedBorderColor: =Color.Red
+            OnSelect: =Select(Parent)
+
+        ItemIcon As image:
+            Image: ='map-marker'
+            DisabledBorderColor: =RGBA(204, 204, 204, 1)
+            ZIndex: =3
+            Y: =32
+            Height: =51
+            Width: =89
+            Transparency: =0.7
+            OnSelect: =Select(Parent)
+
+        DeskName As label:
+            Text: =ThisItem.DeskNumber
+            ZIndex: =4
+            FontWeight: =FontWeight.Bold
+            Y: =22
+            X: =87
+            Size: =15
+            OnSelect: =Select(Parent)
+
+        AttachmentIcon As icon.Attachment:
+            Width: =40
+            Y: =37
+            X: =490
+            ZIndex: =8
+            Color: =RGBA(0, 0, 0, 1)
+            Icon: =Icon.PaperClip
+            Height: =46
+            OnSelect: |
+                =Set(
+                    _PopUpData,
+                    {
+                        ImageUrl: ThisItem.FloorPlanUrl,
+                        Title: ThisItem.DeskNumber
+                    }
+                );
+
+        BuildingInfo As group:
+            ZIndex: =12
+            Height: =5
+            Width: =5
+            Y: =40
+            X: =40
+
+            BuildingText As label:
+                Text: |
+                    =//"235 Queen St. (Floor: " & ThisItem.'Location:Floor' & ")"
+                    //ThisItem.'Location:Building' & "(" & LookUp(Translations, Key = component.bookingresults.buildingtext.floor && Language.Value = AppUserLang, Text)
+                    ThisItem.'Location:Building' & " (Floor: " & ThisItem.FloorNumber & ")"
+                ZIndex: =5
+                Height: =42
+                Width: =234
+                Y: =54
+                X: =108
+                OnSelect: =Select(Parent)
+
+            BuildingIcon As icon.OfficeBuilding:
+                Width: =25
+                Y: =54
+                X: =87
+                ZIndex: =6
+                Color: =RGBA(0, 0, 0, 1)
+                Icon: =Icon.OfficeBuilding
+                Height: =42
+                OnSelect: =Select(Parent)
+
+        NextBtn As group:
+            ZIndex: =12
+            Height: =5
+            Width: =5
+            Y: =40
+            X: =40
+
+            NextBtnBackground As rectangle:
+                Y: =7
+                ZIndex: =10
+                Height: =106
+                X: =562
+                Width: =78
+                OnSelect: =Navigate(BookingResults.BookingDetailsPage,ScreenTransition.CoverRight)
+
+            NextBtnIcon As icon.ChevronRight:
+                Width: =44
+                Y: =31
+                X: =579
+                ZIndex: =11
+                Color: =RGBA(255, 255, 255, 1)
+                Icon: =Icon.ChevronRight
+                Height: =58
+                OnSelect: =Navigate(BookingResults.BookingDetailsPage,ScreenTransition.CoverRight)
+

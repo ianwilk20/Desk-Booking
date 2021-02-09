@@ -1,0 +1,50 @@
+{
+  "ComponentAllowCustomization": true,
+  "ComponentChangedSinceFileImport": true,
+  "ComponentManifest": {
+    "AllowCustomization": true,
+    "Description": "",
+    "Name": "PageHeading",
+    "TemplateGuid": "f9a419982e014714a94ef4b64d1991ff"
+  },
+  "ComponentType": "CanvasComponent",
+  "CustomGroupControlTemplateName": "",
+  "CustomProperties": [
+    {
+      "Category": 0,
+      "DisplayName": "Icon",
+      "Hidden": false,
+      "Name": "Icon",
+      "PropertyDataTypeKey": "String",
+      "Tooltip": "Icon for heading",
+      "Type": "{\"Version\":\"1.300\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "HeadingText",
+      "Hidden": false,
+      "Name": "HeadingText",
+      "PropertyDataTypeKey": "String",
+      "Tooltip": "Text for heading",
+      "Type": "{\"Version\":\"1.300\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "HasBackBtn",
+      "Hidden": false,
+      "Name": "HasBackBtn",
+      "PropertyDataTypeKey": "Boolean",
+      "Tooltip": "Display Back Button",
+      "Type": "{\"Version\":\"1.300\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"_MinPrimitive\",\"EnumString\":\"\",\"Type\":[]}}"
+    }
+  ],
+  "FirstParty": true,
+  "Id": "http://microsoft.com/appmagic/Component",
+  "IsComponentLocked": false,
+  "IsComponentTemplate": true,
+  "IsCustomGroupControlTemplate": false,
+  "LastModifiedTimestamp": "637484857601071234",
+  "Name": "f9a419982e014714a94ef4b64d1991ff",
+  "OverridableProperties": {},
+  "Version": "637484984397881247"
+}

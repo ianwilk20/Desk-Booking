@@ -1,0 +1,577 @@
+"'Booking Search' As screen":
+    Fill: =RGBA(230, 230, 230, 1)
+    OnVisible: |-
+        =// initialize context variable
+        Set(
+            reservationID,
+            Blank()
+        );
+        UpdateContext(
+            {
+                _city: CityDropdown.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BResult',
+                _building: BuildingDropdown.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BResult',
+                _floor: FloorDropdown.SelectedText.Value,
+                _PopUpData: {
+                    ImageUrl: Blank(),
+                    Title: Blank()
+                },
+                _results: Filter(
+                    Desks,
+                    DeskNumber = 9999999999999
+                )
+            }
+        );
+
+    ManNavBookingSearch As Navigation:
+        NavItems: =MainNavOptions
+        Y: =668
+
+    ReservationSearchHeading As PageHeading:
+        HeadingText: =LookUp(Translations, Key = "bookingsearch.header" && Language.Value = AppUserLang, Text)
+        X: =30
+        Y: =15
+        ZIndex: =2
+
+    CenterDivider As rectangle:
+        X: =543
+        ZIndex: =17
+        Height: =524
+        Width: =2
+        Y: =95
+
+    LoadingAnimation As image:
+        Image: ='Infinity-5s-200px'
+        ZIndex: =21
+        Y: =187
+        Visible: =_isLoading
+        Height: =273
+        Width: =273
+        X: =850
+
+    "BookingResultsGallery As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+        Items: =_results
+        X: =635
+        Visible: =!IsEmpty(_results) && !_isLoading
+        TemplatePadding: =0
+        TemplateSize: =120
+        ZIndex: =22
+        Layout: =Layout.Vertical
+        Height: =528
+        Y: =103
+
+        Rectangle3 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Y: =6
+            Width: =635
+            Height: =107
+            ZIndex: =1
+            OnSelect: =Navigate('Booking Details', ScreenTransition.CoverRight)
+
+        Image3 As image:
+            Image: ='map-marker'
+            X: =23
+            Y: =31
+            Width: =58
+            Height: =58
+            ZIndex: =4
+            Transparency: =0.7
+            OnSelect: =Select(Parent)
+
+        RoomName As label:
+            Text: =ThisItem.DeskNumber
+            X: =97
+            Y: =25
+            FontWeight: =FontWeight.Bold
+            ZIndex: =5
+            Size: =14
+            OnSelect: =Select(Parent)
+
+        FloorPlanIcon As icon.Attachment:
+            Width: =55
+            Y: =33
+            X: =497
+            Height: =55
+            Color: =RGBA(0, 0, 0, 1)
+            Icon: =Icon.PaperClip
+            ZIndex: =8
+            OnSelect: |-
+                =UpdateContext(
+                    {
+                        _PopUpData: {
+                            ImageUrl: ThisItem.FloorPlanUrl,
+                            Title: ThisItem.DeskNumber
+                        }
+                    }
+                )
+
+        ExpandDetailsBtn As group:
+            ZIndex: =8
+            Height: =5
+            Width: =5
+            Y: =40
+            X: =40
+
+            Rectangle4 As rectangle:
+                X: =574
+                Y: =6
+                Width: =64
+                Height: =107
+                ZIndex: =2
+                OnSelect: =Navigate('Booking Details', ScreenTransition.CoverRight)
+
+            NextArrow1 As icon.ChevronRight:
+                AccessibleLabel: =Self.Tooltip
+                Tooltip: ="View item details"
+                Icon: =Icon.ChevronRight
+                Color: =RGBA(255, 255, 255, 1)
+                X: =578
+                Y: =33
+                Width: =60
+                Height: =54
+                ZIndex: =3
+                PaddingLeft: =10
+                PaddingRight: =10
+                PaddingTop: =10
+                PaddingBottom: =10
+                TabIndex: =0
+                OnSelect: =Navigate('Booking Details', ScreenTransition.CoverRight)
+
+        BuildingInfo_1 As group:
+            ZIndex: =10
+            Height: =5
+            Width: =5
+            Y: =-14
+            X: =-47
+
+            BuildingText_1 As label:
+                Text: |
+                    =//"235 Queen St. (Floor: " & ThisItem.'Location:Floor' & ")"
+                    //ThisItem.'Location:Building' & "(" & LookUp(Translations, Key = component.bookingresults.buildingtext.floor && Language.Value = AppUserLang, Text)
+                    ThisItem.'Location:Building'.Value & " (Floor: " & ThisItem.FloorNumber & ")"
+                ZIndex: =6
+                Height: =42
+                Width: =234
+                Y: =54
+                X: =118
+                OnSelect: =Select(Parent)
+
+            BuildingIcon_1 As icon.OfficeBuilding:
+                Width: =25
+                Y: =54
+                X: =97
+                ZIndex: =7
+                Color: =RGBA(0, 0, 0, 1)
+                Icon: =Icon.OfficeBuilding
+                Height: =42
+                OnSelect: =Select(Parent)
+
+    SearchDefaultMessage As group:
+        X: =40
+        Y: =40
+        Width: =5
+        Height: =5
+        ZIndex: =27
+
+        SearchMessageImage As image:
+            Image: ='Online research_Two Color'
+            ZIndex: =18
+            Y: =86
+            Visible: =(IsEmpty(_results) || IsBlank(_results)) && !_isLoading
+            Height: =489
+            Width: =640
+            X: =635
+
+        SearchMessageLabel As label:
+            Text: ="Please Apply Search filters to see results"
+            ZIndex: =19
+            Visible: =(IsEmpty(_results) || IsBlank(_results)) && !_isLoading
+            Height: =77
+            FontWeight: =FontWeight.Lighter
+            Width: =396
+            Y: =498
+            X: =784
+            Align: =Align.Center
+            Size: =18
+            Color: =RGBA(0, 18, 107, 1)
+
+    HiddenEndTimeQuery As label:
+        Text: =LookUp(Timeslots, TimeInMin = (StartDateDropdown.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BTimeInMin' + LookUp(Durations, TimeLengthWritten = DurationDropdown.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BTimeLengthWritten', TimeLength)), TimeFull)
+        ZIndex: =28
+        Y: =618
+        X: =39
+        Visible: =false
+
+    BuildingForm As group:
+        ZIndex: =29
+        Height: =5
+        Width: =5
+        Y: =40
+        X: =40
+
+        BuildingDropdown As dropdown:
+            Items: =SortByColumns(Distinct(Filter(Locations, City = CityDropdown.SelectedText.Value), Building),"Result")
+            Reset: =
+            AllowEmptySelection: =true
+            AccessibleLabel: =""
+            ZIndex: =4
+            DisplayMode: =If(IsBlank(CityDropdown.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BResult'), DisplayMode.Disabled, DisplayMode.Edit )
+            Width: =450
+            Y: =227
+            X: =44
+            OnChange: |+
+                =// clear search results
+                UpdateContext({_results: Table()});
+                // clear dependent dropdowns
+                Reset(FloorDropdown);
+                // populate floor dropdown
+                //ClearCollect(FloorCol, {FloorNum: "Any"}); Collect(FloorCol, Distinct(Filter(Desks, 'Location:Building'.Value = BuildingDropdown.SelectedText.Value), FloorNumber));
+                ClearCollect(FloorColl, "Any");
+                Collect(FloorColl, ForAll(SortByColumns(Distinct(Filter(Desks, 'Location:Building'.Value = BuildingDropdown.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BResult').FloorNumber, FloorNumber), "Result"), Text(ThisRecord.Result)));
+                
+
+        BuildingLabel As label:
+            Text: =LookUp(Translations, Key = "bookingsearch.building.title" && Language.Value = AppUserLang, Text)
+            ZIndex: =8
+            Y: =187
+            X: =44
+
+    CityForm As group:
+        ZIndex: =29
+        Height: =5
+        Width: =5
+        Y: =40
+        X: =40
+
+        CityDropdown As dropdown:
+            Items: =SortByColumns(Distinct(Locations, City), "Result")
+            Reset: =
+            AllowEmptySelection: =true
+            ZIndex: =3
+            Width: =450
+            Y: =141
+            X: =44
+            OnChange: |
+                =// reset search results
+                UpdateContext({_results: Table()});
+                // reset dependent dropdown 
+                Reset(BuildingDropdown);
+                Reset(FloorDropdown);
+
+        CityLabel As label:
+            Text: =LookUp(Translations, Key = "bookingsearch.city.title" && Language.Value = AppUserLang, Text)
+            ZIndex: =7
+            Y: =101
+            X: =44
+
+    FloorForm As group:
+        ZIndex: =29
+        Height: =5
+        Width: =5
+        Y: =40
+        X: =40
+
+        FloorDropdown As dropdown:
+            Items: |
+                =//SortByColumns(Distinct(Filter(Desks, 'Location:Building'.Value = BuildingDropdown.SelectedText.Value), FloorNumber),"Result")
+                FloorColl
+            Reset: =
+            AllowEmptySelection: =true
+            Default: =
+            ZIndex: =5
+            DisplayMode: =If(IsBlank(BuildingDropdown.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BResult'), DisplayMode.Disabled, DisplayMode.Edit )
+            Width: =450
+            Y: =311
+            X: =44
+            FontWeight: =FontWeight.Lighter
+            OnChange: =
+
+        FloorLabel As label:
+            Text: =LookUp(Translations, Key = "bookingsearch.floor.title" && Language.Value = AppUserLang, Text)
+            ZIndex: =9
+            Y: =273
+            X: =44
+
+    StartDateForm As group:
+        ZIndex: =29
+        Height: =5
+        Width: =5
+        Y: =40
+        X: =40
+
+        StartDatePicker As datepicker:
+            InputTextPlaceholder: =
+            DefaultDate: =Blank()
+            Width: =450
+            BorderColor: =If(StartDatePicker.SelectedDate < Today() && !IsBlank(StartDatePicker.SelectedDate), Color.Red, RGBA(0, 18, 107, 1))
+            X: =44
+            ZIndex: =10
+            DisplayMode: =
+            Y: =394
+            OnChange: |
+                =// check if start date is before today's date
+                UpdateContext({_startDateError: (StartDatePicker.SelectedDate < Today() && !IsBlank(StartDatePicker.SelectedDate))});
+            OnSelect: =
+
+        StartDateLabel As label:
+            Text: =LookUp(Translations, Key = "bookingsearch.date.title" && Language.Value = AppUserLang, Text)
+            ZIndex: =11
+            Y: =354
+            X: =44
+
+        StartDateError As label:
+            Text: ="Dates in the past cannot be selected"
+            Size: =11
+            ZIndex: =20
+            Visible: =StartDatePicker.SelectedDate < Today() && !IsBlank(StartDatePicker.SelectedDate)
+            Width: =356
+            Y: =426
+            X: =44
+            Color: =Color.Red
+
+    StartTimeForm As group:
+        ZIndex: =29
+        Height: =5
+        Width: =5
+        Y: =40
+        X: =40
+
+        StartDateDropdown As dropdown:
+            Items: =Timeslots
+            AllowEmptySelection: =true
+            Reset: =_startDateError
+            DisplayMode: =If(IsBlank(StartDatePicker.SelectedDate) || _startDateError, DisplayMode.Disabled, DisplayMode.Edit )
+            Width: =195
+            Y: =488
+            X: =44
+            ZIndex: =12
+            OnChange: =
+
+        StartTimeLabel As label:
+            Text: =LookUp(Translations, Key = "bookingsearch.starttime.title" && Language.Value = AppUserLang, Text)
+            ZIndex: =13
+            Y: =448
+            X: =44
+
+    DurationForm As group:
+        ZIndex: =29
+        Height: =5
+        Width: =5
+        Y: =40
+        X: =40
+
+        DurationDropdown As dropdown:
+            Items: =Durations.TimeLengthWritten
+            AllowEmptySelection: =true
+            Reset: =_startDateError
+            DisplayMode: =If(IsBlank(StartDateDropdown.SelectedText.Value)|| _startDateError, DisplayMode.Disabled, DisplayMode.Edit)
+            Width: =208
+            Y: =488
+            X: =285
+            ZIndex: =14
+            OnChange: =
+
+        DurationLabel As label:
+            Text: =LookUp(Translations, Key = "bookingsearch.duration.title" && Language.Value = AppUserLang, Text)
+            ZIndex: =15
+            Y: =448
+            X: =285
+
+    FloorPlanModal As group:
+        ZIndex: =30
+        Height: =5
+        Width: =5
+        Y: =40
+        X: =40
+
+        ModalBackground_1 As rectangle:
+            Height: =Parent.Height
+            ZIndex: =23
+            Width: =Parent.Width
+            Fill: =RGBA(0, 0, 0, 0.5)
+            Visible: =!IsBlank(_PopUpData.ImageUrl)
+
+        ModalBox_1 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Y: =(Parent.Height-ModalBox_1.Height)/2
+            X: =(Parent.Width-ModalBox_1.Width)/2
+            Width: =Parent.Width*0.9
+            Height: =Parent.Height*0.9
+            ZIndex: =24
+            Visible: =!IsBlank(_PopUpData.ImageUrl)
+
+        FloorPlanImage As image:
+            Image: =If( !IsBlank(_PopUpData), _PopUpData.ImageUrl, "" )
+            ZIndex: =25
+            Y: =101
+            Visible: =!IsBlank(_PopUpData.ImageUrl)
+            Height: =566
+            Width: =1134
+            X: =116
+
+        CloseModalIcon As icon.Cancel:
+            Width: =46
+            Y: =66
+            X: =1204
+            ZIndex: =26
+            Color: =RGBA(0, 0, 0, 1)
+            Icon: =Icon.Cancel
+            Height: =46
+            Visible: =!IsBlank(_PopUpData.ImageUrl)
+            OnSelect: |-
+                =UpdateContext(
+                    {
+                        _PopUpData: {
+                            ImageUrl: Blank(),
+                            Title: Blank()
+                        }
+                    }
+                )
+
+        Label2 As label:
+            Text: =_PopUpData.Title
+            Color: =RGBA(0, 13, 75, 1)
+            FontWeight: =FontWeight.Lighter
+            Align: =Align.Center
+            X: =608
+            Y: =56
+            Width: =151
+            Height: =47
+            ZIndex: =27
+            Size: =35
+            Visible: =!IsBlank(_PopUpData.ImageUrl)
+
+    FormControlBtns As group:
+        ZIndex: =30
+        Height: =5
+        Width: =5
+        Y: =40
+        X: =40
+
+        ClearFromBtn As button:
+            Text: =LookUp(Translations, Key = "bookingsearch.button.clear" && Language.Value = AppUserLang, Text)
+            Y: =567
+            ZIndex: =6
+            HoverFill: =ColorFade(RGBA(255, 255, 255, 1), -20%)
+            Height: =41
+            X: =39
+            Color: =RGBA(184, 0, 0, 1)
+            Width: =117
+            RadiusBottomLeft: =0
+            Fill: =RGBA(255, 255, 255, 1)
+            RadiusBottomRight: =0
+            RadiusTopRight: =0
+            RadiusTopLeft: =0
+            BorderColor: =RGBA(184, 0, 0, 1)
+            OnSelect: |-
+                =Reset(CityDropdown);
+                Reset(BuildingDropdown);
+                Reset(FloorDropdown);
+                Reset(StartDatePicker);
+                Reset(StartDateDropdown);
+                Reset(DurationDropdown);
+                UpdateContext(
+                    {
+                        _city: Blank(),
+                        _building: Blank(),
+                        _floor: Blank(),
+                        _startDate: Blank(),
+                        _startTime: Blank(),
+                        _duration: Blank(),
+                        _results: Table()
+                    }
+                )
+
+        SearchBtn As button:
+            Text: =LookUp(Translations, Key = "bookingsearch.button.search" && Language.Value = AppUserLang, Text)
+            Y: =568
+            X: =168
+            ZIndex: =16
+            Width: =326
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopRight: =0
+            RadiusTopLeft: =0
+            DisplayMode: |-
+                =// activate button if all fields are filled and no errors found
+                If(
+                    _startDateError || IsBlank(CityDropdown.SelectedText.Value) || IsBlank(BuildingDropdown.SelectedText.Value) || IsBlank(FloorDropdown.SelectedText.Value) || IsBlank(StartDatePicker.SelectedDate) || IsBlank(StartDateDropdown.SelectedText.Value) || IsBlank(DurationDropdown.SelectedText.Value),
+                    DisplayMode.Disabled,
+                    DisplayMode.Edit
+                )
+            OnSelect: |
+                =// start loading animation
+                UpdateContext({_isLoading: true});
+                // store form options
+                UpdateContext(
+                    {
+                        _city: CityDropdown.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BResult',
+                        _building: BuildingDropdown.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BResult',
+                        _floor: FloorDropdown.SelectedText.Value,
+                        _startDate: StartDatePicker.SelectedDate,
+                        _startTime: LookUp(
+                            Timeslots,
+                            TimeFull = StartDateDropdown.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BTimeFull',
+                            TimeInMin
+                        ),
+                        _duration: LookUp(
+                            Durations,
+                            TimeLengthWritten = DurationDropdown.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BTimeLengthWritten',
+                            TimeLength
+                        )
+                    }
+                );
+                // store desks and reservations
+                UpdateContext(
+                    {
+                        _Desks: Filter(
+                            Desks,
+                            'Location:City'.Value = _city && 'Location:Building'.Value = _building
+                        ),
+                        _reservations: Filter(
+                            Reservations,
+                            StartDate = _startDate && ((StartTime <= _startTime && EndTime > _startTime) || (StartTime < (_startTime + _duration) && EndTime > (_startTime + _duration)) || (StartTime >= _startTime && EndTime <= (_startTime + _duration)))
+                        )
+                    }
+                );
+                If(
+                    _floor = "Any",
+                    ClearCollect(
+                        _filteredDesks,
+                        _Desks
+                    ),
+                    ClearCollect(
+                        _filteredDesks,
+                        Filter(
+                            _Desks,
+                            Value(_floor) = FloorNumber
+                        ).ID
+                    )
+                );
+                // filter out and store reserved desk IDs
+                UpdateContext(
+                    {
+                        _ReservedDesksIDs: ForAll(
+                            _reservations,
+                            If(
+                                Not(IsEmpty(DeskID)),
+                                DeskID.Value,
+                                ""
+                            )
+                        ).Value
+                    }
+                );
+                // find available desks
+                UpdateContext(
+                    {
+                        _results: SortByColumns(
+                            Filter(
+                                _filteredDesks,
+                                Not(ID in _ReservedDesksIDs)
+                            ),
+                            "DeskNumber"
+                        )
+                    }
+                );
+                // end loading animation
+                UpdateContext({_isLoading: false});
+

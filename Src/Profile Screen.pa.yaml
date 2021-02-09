@@ -1,0 +1,137 @@
+"'Profile Screen' As screen":
+    Fill: =RGBA(230, 230, 230, 1)
+
+    MainNavDash As Navigation:
+        NavItems: =MainNavOptions
+        Y: =668
+        ZIndex: =2
+
+    Heading As label:
+        Text: =LookUp(Translations, Key = "profile.greeting.header" && Language.Value = AppUserLang, Text) & ", " & User().FullName
+        Size: =30
+        ZIndex: =3
+        Height: =85
+        Width: =381
+        Y: =28
+        X: =40
+        FontWeight: =FontWeight.Bold
+        Font: =Font.'Lato Hairline'
+        Color: =RGBA(0, 13, 75, 1)
+
+    Language As group:
+        ZIndex: =9
+        Height: =5
+        Width: =5
+        Y: =60
+        X: =60
+
+        LangDropdown As dropdown:
+            Items: =["English", "French"]
+            Default: |-
+                =Switch(
+                    LookUp(
+                        Accounts,
+                        UserEmail = AppUserEmail
+                    ).Language.Value,
+                    "en",
+                    "English",
+                    "fr",
+                    "French",
+                    "Select"
+                )
+            ZIndex: =4
+            Y: =266
+            X: =40
+            OnChange: |
+                =If(
+                    IsEmpty(
+                        Filter(
+                            Accounts,
+                            UserEmail = AppUserEmail
+                        )
+                    ),
+                    Set(
+                        Data,
+                        Patch(
+                            Accounts,
+                            Defaults(Accounts),
+                            {
+                                UserEmail: AppUserEmail,
+                                Language: {
+                                    '@odata.type': "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference",
+                                    Value: LangDropdown.SelectedText.Value
+                                },
+                                AgreedToTerms: false
+                            }
+                        )
+                    ),
+                    Set(
+                        Data,
+                        Patch(
+                            Accounts,
+                            LookUp(
+                                Accounts,
+                                UserEmail = AppUserEmail
+                            ),
+                            {
+                                Language: {
+                                    '@odata.type': "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference",
+                                    Value: LangDropdown.SelectedText.Value
+                                }
+                            }
+                        )
+                    )
+                );
+                If(
+                    !IsBlank(Data),
+                    Set(
+                        AppUserLang,
+                        If (
+                            LangDropdown.SelectedText.Value = "French",
+                            "fr",
+                            "en"
+                        )
+                    );
+                    Notify(
+                        "Update Saved",
+                        NotificationType.Success
+                    ),
+                    Notify(
+                        "There Was an error",
+                        NotificationType.Error
+                    )
+                );
+
+        LangLabel As label:
+            Text: =LookUp(Translations, Key = "profile.language.preference" && Language.Value = AppUserLang, Text)
+            ZIndex: =6
+            Height: =41
+            Width: =218
+            Y: =222
+            X: =40
+
+    Email As group:
+        ZIndex: =9
+        Height: =5
+        Width: =5
+        Y: =60
+        X: =60
+
+        EmailLabel As label:
+            Text: =LookUp(Translations, Key = "profile.detected.email.title" && Language.Value = AppUserLang, Text)
+            ZIndex: =7
+            Height: =41
+            Width: =218
+            Y: =140
+            X: =43
+
+        EmailView As label:
+            Text: =User().Email
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Bold
+            X: =43
+            Y: =167
+            Width: =286
+            Height: =42
+            ZIndex: =8
+

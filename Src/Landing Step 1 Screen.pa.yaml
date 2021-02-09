@@ -1,0 +1,179 @@
+"'Landing Step 1 Screen' As screen":
+    OnVisible: |-
+        =UpdateContext({isLoading: false})
+
+    WelcomeMessage As label:
+        Text: =LookUp(Translations, Key = "welcome" And Language.Value = AppUserLang, Text)
+        Size: =40
+        ZIndex: =3
+        Height: =115
+        Width: =281
+        Y: =84
+        X: =76
+
+    NextStepButton As button:
+        Text: =LookUp(Translations, Key = "save.next" && Language.Value = AppUserLang, Text)
+        DisplayMode: =If(LangDropdown_1.Selected.Value="Select", DisplayMode.Disabled, DisplayMode.Edit)
+        X: =76
+        Y: =547
+        Width: =250
+        Height: =44
+        ZIndex: =7
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        OnSelect: |
+            =// start loading animation
+            UpdateContext({isLoading: true});
+            // save Language data
+            If(
+                LangDropdown_1.SelectedText.Value <> "",
+                If(
+                    IsBlank(
+                        LookUp(
+                            Accounts,
+                            UserEmail = AppUserEmail
+                        ).UserEmail
+                    ),
+                    UpdateContext(
+                        {
+                            User: Patch(
+                                Accounts,
+                                Defaults(Accounts),
+                                {
+                                    UserEmail: AppUserEmail,
+                                    Language: {
+                                        '@odata.type': "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference",
+                                        Value: LangDropdown_1.SelectedText.Value
+                                    },
+                                    AgreedToTerms: false
+                                }
+                            )
+                        }
+                    ),
+                    UpdateContext(
+                        {
+                            User: Patch(
+                                Accounts,
+                                LookUp(
+                                    Accounts,
+                                    UserEmail = AppUserEmail
+                                ),
+                                {
+                                    Language: {
+                                        '@odata.type': "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference",
+                                        Value: LangDropdown_1.SelectedText.Value
+                                    }
+                                }
+                            )
+                        }
+                    )
+                )
+            );
+            // show notification
+            If(
+                !IsBlank(User),
+                Notify(
+                    "Update Saved",
+                    NotificationType.Success
+                ),
+                Notify(
+                    "There Was an error",
+                    NotificationType.Error
+                )
+            );
+            // update app language
+            If(
+                !IsBlank(User),
+                Set(
+                    AppUserLang,
+                    If(
+                        User.Language.Value = "French",
+                        "fr",
+                        "en"
+                    )
+                )
+            );
+            // navigate to next page
+            If(
+                !IsBlank(User),
+                Navigate('Landing Step 2 Screen'),
+                UpdateContext({isLoading: false});
+                
+            );
+
+    Language_1 As group:
+        ZIndex: =7
+        Height: =5
+        Width: =5
+        Y: =60
+        X: =60
+
+        LangDropdown_1 As dropdown:
+            Items: =["Select","English", "French"]
+            Default: |-
+                =Switch(
+                    LookUp(
+                        Accounts,
+                        UserEmail = AppUserEmail
+                    ).Language.Value,
+                    "English",
+                    "English",
+                    "French",
+                    "French",
+                    "Select"
+                )
+            ZIndex: =5
+            Y: =426
+            X: =76
+            OnChange: =
+
+        LangLabel_1 As label:
+            Text: =LookUp(Translations, Key = "language.preference" && Language.Value = AppUserLang, Text)
+            ZIndex: =6
+            Height: =41
+            Width: =218
+            Y: =382
+            X: =76
+
+    Image2 As image:
+        Image: ='Infinity-5s-200px'
+        X: =335
+        Y: =538
+        Width: =69
+        Height: =61
+        ZIndex: =8
+        Visible: =isLoading
+
+    LandingImage As group:
+        ZIndex: =8
+        Height: =5
+        Width: =5
+        Y: =40
+        X: =40
+
+        LandingSvgBkg As rectangle:
+            Width: =App.Width/2
+            ZIndex: =1
+            X: =App.Width/2
+            Height: =App.Height
+            Fill: =RGBA(230, 230, 230, 1)
+
+        LandingSvg As image:
+            Image: ='Receptionist_Isometric (1)'
+            ZIndex: =2
+            Height: =500
+            Width: =500
+            Y: =134
+            X: =774
+
+    HtmlText1 As htmlViewer:
+        HtmlText: =LookUp(Translations, Key = "welcome.message" && Language.Value = AppUserLang, Text)
+        Width: =449
+        Height: =184
+        X: =76
+        Y: =198
+        ZIndex: =9
+        Size: =12
+

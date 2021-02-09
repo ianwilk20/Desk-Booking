@@ -1,0 +1,72 @@
+App As appinfo:
+    OnStart: |
+        =// save user email
+        Set(
+            AppUserEmail,
+            Lower(User().Email)
+        );
+        // set app language
+        If(
+            IsBlank(
+                LookUp(
+                    Accounts,
+                    UserEmail = AppUserEmail
+                ).UserEmail
+            ),
+            Set(
+                AppUserLang,
+                "en"
+            ),
+            Set(
+                AppUserLang,
+                If(
+                    LookUp(
+                        Accounts,
+                        UserEmail = AppUserEmail
+                    ).Language.Value = "French",
+                    "fr",
+                    "en"
+                )
+            )
+        );
+        // redirect to bookings page if account is found
+        If(
+            IsBlank(
+                LookUp(
+                    Accounts,
+                    UserEmail = AppUserEmail
+                ).UserEmail
+            ),
+            Navigate('Landing Step 1 Screen'),
+            Navigate('Appointments Screen')
+        );
+        // generate menu options
+        ClearCollect(
+            MainNavOptions,
+            Table(
+                {
+                    Title: User().FullName,
+                    Icon: Icon.Person,
+                    Screen: 'Profile Screen'
+                },
+                {
+                    Title: LookUp(
+                        Translations,
+                        Key = "mainnav.appointments" And Language.Value = AppUserLang,
+                        Text
+                    ),
+                    Icon: Icon.DetailList,
+                    Screen: 'Appointments Screen'
+                },
+                {
+                    Title: LookUp(
+                        Translations,
+                        Key = "mainnav.book" And Language.Value = AppUserLang,
+                        Text
+                    ),
+                    Icon: Icon.Add,
+                    Screen: 'Booking Search'
+                }
+            )
+        );
+

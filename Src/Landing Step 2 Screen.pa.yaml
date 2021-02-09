@@ -1,0 +1,116 @@
+"'Landing Step 2 Screen' As screen":
+    OnVisible: |-
+        =UpdateContext({isLoading:false});
+
+    TermsHeading As label:
+        Text: =LookUp(Translations, Key = "terms.heading" && Language.Value = AppUserLang, Text)
+        Size: =25
+        X: =76
+        Y: =84
+        Width: =531
+        Height: =83
+        ZIndex: =3
+
+    NextStepButton_1 As button:
+        Text: =LookUp(Translations, Key = "save.finish" && Language.Value = AppUserLang, Text)
+        DisplayMode: =If(TermsCheckbox_1.Value, DisplayMode.Edit, DisplayMode.Disabled)
+        X: =76
+        Y: =622
+        Width: =270
+        Height: =44
+        ZIndex: =7
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        OnSelect: |
+            =// start loading animation
+            UpdateContext({isLoading: true});
+            // save Language data
+            If(
+               IsBlank(
+                    LookUp(
+                        Accounts,
+                        UserEmail = AppUserEmail
+                    ).UserEmail
+                ),
+                Navigate('Landing Step 1 Screen'),
+                UpdateContext(
+                    {
+                        User: Patch(
+                            Accounts,
+                            LookUp(Accounts, UserEmail = AppUserEmail),
+                                { AgreedToTerms: true }
+                        )
+                    }
+                )
+            );
+            // show notification
+            If(
+                !IsBlank(User),
+                Notify(
+                    "Update Saved",
+                    NotificationType.Success
+                ),
+                Notify(
+                    "There Was an error",
+                    NotificationType.Error
+                )
+            );
+            // navigate to next page
+            If(
+                !IsBlank(User),
+                Navigate('Appointments Screen'),
+                UpdateContext({isLoading: false});
+                
+            );
+
+    TermsCheckbox_1 As checkbox:
+        Text: =LookUp(Translations, Key = "terms.checkbox" And Language.Value = AppUserLang, Text)
+        Default: =If(Text(LookUp(Accounts ,UserEmail = Text(User().Email), AgreedToTerms))="false", false , true)
+        ZIndex: =8
+        Width: =387
+        Y: =547
+        X: =76
+        OnSelect: =
+
+    LandingImage_1 As group:
+        ZIndex: =8
+        Height: =5
+        Width: =5
+        Y: =40
+        X: =40
+
+        LandingSvgBkg_1 As rectangle:
+            Width: =App.Width/2
+            ZIndex: =1
+            X: =App.Width/2
+            Height: =App.Height
+            Fill: =RGBA(230, 230, 230, 1)
+
+        LandingSvg_1 As image:
+            Image: ='Receptionist_Isometric (1)'
+            ZIndex: =2
+            Height: =500
+            Width: =500
+            Y: =134
+            X: =774
+
+    Image2_1 As image:
+        Image: ='Infinity-5s-200px'
+        X: =364
+        Y: =613
+        Width: =69
+        Height: =61
+        ZIndex: =9
+        Visible: =isLoading
+
+    HtmlText2 As htmlViewer:
+        HtmlText: =LookUp(Translations, Key = "terms.statement" && Language.Value = AppUserLang, Text)
+        Width: =513
+        Height: =384
+        X: =76
+        Y: =149
+        ZIndex: =10
+        Size: =12
+

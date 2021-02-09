@@ -1,0 +1,43 @@
+PageHeading As CanvasComponent:
+    Icon: =Icon.Add
+    HeadingText: ="Sample Heading"
+    HasBackBtn: =false
+    ZIndex: =1
+    Y: =0
+    X: =0
+    Width: =640
+    Height: =80
+    Fill: =RGBA(0, 0, 0, 0)
+
+    HeadingText As label:
+        Text: =PageHeading.HeadingText
+        ZIndex: =1
+        FontWeight: =FontWeight.Semibold
+        Height: =74
+        Width: =574
+        Size: =30
+        Y: =2
+        X: =64
+        Font: =Font.'Lato Hairline'
+        Color: =RGBA(0, 18, 107, 1)
+
+    HeadingIcon As icon.Add:
+        Y: =20
+        X: =20
+        ZIndex: =2
+        Icon: =PageHeading.Icon
+        Height: =39
+        Width: =39
+        Visible: =!PageHeading.HasBackBtn
+
+    BackBtn As icon.BackArrow:
+        Tooltip: ="Go Back"
+        Height: =50
+        Width: =50
+        Y: =14
+        Visible: =PageHeading.HasBackBtn
+        X: =9
+        ZIndex: =3
+        Icon: =Icon.BackArrow
+        OnSelect: =Back(ScreenTransition.UnCoverRight)
+

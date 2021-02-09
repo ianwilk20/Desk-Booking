@@ -1,0 +1,58 @@
+{
+  "235ae36e-8ec8-4991-aaa7-8009518942f6": {
+    "connectionInstanceId": "/providers/microsoft.powerapps/apis/shared_sharepointonline/connections/feb2ab0d14a1475da7931bb9614da88d",
+    "connectionParameters": {
+      "sku": "Enterprise"
+    },
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1431/1.0.1431.2301/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {}
+    },
+    "datasets": {
+      "https://033gc.sharepoint.com/sites/OfficeBooking-RelationalImplementation": {
+        "dataSources": {
+          "Accounts": {
+            "tableName": "304be2b7-5077-4ca7-b9cd-4546a6b0c3d4"
+          },
+          "Desks": {
+            "tableName": "3985ee49-90c9-4858-ae9f-f31cdf8840aa"
+          },
+          "Locations": {
+            "tableName": "9b0da4f4-0dc1-4d21-befa-220d4a17ebb7"
+          },
+          "Reservations": {
+            "tableName": "6af4da68-8074-4588-a6c7-5323cae05da0"
+          },
+          "Translations": {
+            "tableName": "974f57ba-d918-4a8e-877f-539f752ff71d"
+          }
+        }
+      },
+      "https://033gc.sharepoint.com/sites/OfficeBooking-RelationalImplementation/": {
+        "dataSources": {
+          "Durations": {
+            "tableName": "ecf3e1d2-11fa-446b-919a-dfa80b5728ad"
+          },
+          "Timeslots": {
+            "tableName": "9ac77755-c00e-46be-8a5a-b05408a53618"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Timeslots",
+      "Durations",
+      "Reservations",
+      "Translations",
+      "Accounts",
+      "Locations",
+      "Desks"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "235ae36e-8ec8-4991-aaa7-8009518942f6"
+  }
+}

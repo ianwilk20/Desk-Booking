@@ -1,0 +1,52 @@
+Navigation As CanvasComponent:
+    NavItems: |-
+        =Table(
+            {
+                Title: "Dashboard_place",
+                Icon: Home,
+                Screen: App.ActiveScreen
+            },
+            {
+                Title: "Dashboard_place",
+                Icon: DetailList,
+                Screen: App.ActiveScreen
+            },
+            {
+                Title: "Dashboard_place",
+                Icon: Add,
+                Screen: App.ActiveScreen
+            }
+        )
+    ZIndex: =1
+    Y: =0
+    X: =0
+    Width: =Max(App.Width, App.MinScreenWidth)
+    Height: =100
+    Fill: =RGBA(0, 0, 0, 0)
+
+    Gallery1 As gallery.galleryHorizontal:
+        Items: =Navigation.NavItems
+        TemplateSize: =Parent.Width/CountRows(Navigation.NavItems)
+        TemplatePadding: =0
+        Fill: =RGBA(255, 255, 255, 1)
+        Width: =Parent.Width
+        Height: =Parent.Height
+        ZIndex: =1
+
+        LabelItem As label:
+            Text: =ThisItem.Title
+            ZIndex: =1
+            Y: =59
+            X: =153
+            Align: =Align.Center
+            OnSelect: =Select(IconItem)
+
+        IconItem As icon.Add:
+            Width: =50
+            Y: =12
+            X: =(Parent.Width/CountRows(Navigation.NavItems))/2-(IconItem.Width/2)
+            ZIndex: =2
+            Icon: =ThisItem.Icon
+            Height: =50
+            OnSelect: =Navigate(ThisItem.Screen)
+

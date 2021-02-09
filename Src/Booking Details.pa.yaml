@@ -1,0 +1,511 @@
+"'Booking Details' As screen":
+    Fill: =RGBA(230, 230, 230, 1)
+    LoadingSpinner: =LoadingSpinner.Data
+    OnVisible: |-
+        =UpdateContext(
+            {
+                _showFloorPlan: false,
+                DeskFloorPlan: Blank()
+            }
+        );
+        If (
+            IsBlank(reservationID),
+            UpdateContext(
+                {
+                    ShowSpinner: false,
+                    EnableBookBtn: true,
+                    VisibleBookBtn: true,
+                    ShowStatus: false,
+                    HeaderText: LookUp(Translations, Key = "bookingdetails.header.confirm" && Language.Value = AppUserLang, Text),
+                    StartDate: StartDatePicker.SelectedDate,
+                    Duration: DurationDropdown.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BTimeLengthWritten',
+                    StartTime: StartDateDropdown.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BTimeFull',
+                    StartTimeInMin: LookUp(
+                        Timeslots,
+                        TimeFull = StartDateDropdown.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BTimeFull',
+                        TimeInMin
+                    ),
+                    EndTime: HiddenEndTimeQuery.Text,
+                    FloorNum: BookingResultsGallery.Selected.FloorNumber,
+                    DeskNum: BookingResultsGallery.Selected.DeskNumber,
+                    Building: BuildingDropdown.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BResult',
+                    City: CityDropdown.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BResult',
+                    DeskFloorPlan: LookUp(
+                        Desks,
+                        ID = Value(BookingResultsGallery.Selected.ID),
+                        FloorPlanUrl
+                    ),
+                    Status: Blank()
+                }
+            ),
+            UpdateContext(
+                {
+                    ShowSpinner: false,
+                    VisibleBookBtn: false,
+                    ShowStatus: true,
+                    disableCancelButton: DisplayMode.Edit,
+                    HeaderText: LookUp(Translations, Key = "bookingdetails.header.detail" && Language.Value = AppUserLang, Text),
+                    ReservationID: Value(reservationInfo.ID),
+                    StartDate: reservationInfo.StartDate,
+                    StartTime: LookUp(
+                        Timeslots,
+                        TimeInMin = reservationInfo.StartTime,
+                        TimeFull
+                    ),
+                    EndTime: LookUp(
+                        Timeslots,
+                        TimeInMin = reservationInfo.EndTime,
+                        TimeFull
+                    ),
+                    FloorNum: Value(reservationInfo.'DeskID:FloorNumber'.Value),
+                    DeskNum: Value(reservationInfo.'DeskID:DeskNumber'.Value),
+                    Building: Text(
+                        LookUp(
+                            Desks,
+                            ID = Value(reservationInfo.DeskID.Value),
+                            'Location:Building'
+                        ).Value
+                    ),
+                    City: Text(
+                        LookUp(
+                            Desks,
+                            ID = Value(reservationInfo.DeskID.Value),
+                            'Location:City'
+                        ).Value
+                    ),
+                    DeskFloorPlan: LookUp(
+                        Desks,
+                        ID = Value(reservationInfo.DeskID.Value),
+                        FloorPlanUrl
+                    ),
+                    Status: reservationInfo.Status.Value
+                }
+            )
+        )
+
+    MainNavBookingDetail As Navigation:
+        NavItems: =MainNavOptions
+        Y: =668
+        ZIndex: =2
+
+    PageHeading_2 As PageHeading:
+        Icon: =Icon.Pin
+        HeadingText: =HeaderText
+        HasBackBtn: =true
+        ZIndex: =3
+        Y: =33
+        X: =53
+        Width: =706
+        Height: =79
+
+    Details_BookBtn As button:
+        Text: =LookUp(Translations, Key = "bookingdetails.book" && Language.Value = AppUserLang, Text)
+        RadiusBottomRight: =0
+        RadiusBottomLeft: =0
+        RadiusTopRight: =0
+        RadiusTopLeft: =0
+        ZIndex: =29
+        Height: =56
+        Width: =482
+        Y: =466
+        X: =53
+        DisplayMode: =If(EnableBookBtn, DisplayMode.Edit, DisplayMode.Disabled)
+        Visible: =VisibleBookBtn
+        OnSelect: |
+            =UpdateContext(
+                {
+                    ShowSpinner: true,
+                    EnableBookBtn: false
+                }
+            );
+            //UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });
+            UpdateContext(
+                {
+                    displayInfo: LookUp(
+                        Desks,
+                        DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,
+                        ID
+                    )
+                }
+            );
+            // DOESN'T SEEM LIKE WE NEED TO SET THE TITLE
+            Patch(
+                Reservations,
+                Defaults(Reservations),
+                {
+                    StartDate: StartDate,
+                    StartTime: StartTimeInMin,
+                    EndTime: StartTimeInMin + LookUp(
+                        Durations,
+                        TimeLengthWritten = Duration,
+                        TimeLength
+                    ),
+                    DeskID: {
+                        '@odata.type': "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference",
+                        Id: LookUp(
+                            Desks,
+                            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,
+                            ID
+                        ),
+                        Value: LookUp(
+                            Desks,
+                            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,
+                            FloorNumber
+                        )
+                    },
+                    Status: {
+                        '@odata.type': "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference",
+                        Value: "Confirmed"
+                    },
+                    User: Lower(User().Email)
+                }
+            );
+            UpdateContext(
+                {
+                    ShowSpinner: false,
+                    EnableBookBtn: true,
+                    StartDate: Blank(),
+                    Duration: Blank(),
+                    StartTime: Blank(),
+                    EndTime: Blank(),
+                    FloorNum: Blank(),
+                    DeskNum: Blank(),
+                    Building: Blank(),
+                    City: Blank()
+                }
+            );
+            Navigate(
+                'Appointments Screen',
+                ScreenTransition.CoverRight
+            );
+
+    BookingSpinner As image:
+        Image: ='Infinity-5s-200px'
+        ZIndex: =30
+        DisplayMode: =
+        Visible: =ShowSpinner
+        Height: =78
+        Width: =78
+        Y: =455
+        X: =553
+
+    BookingStatusCard As group:
+        ZIndex: =36
+        Height: =5
+        Width: =5
+        Y: =40
+        X: =40
+
+        CardRectangle_3 As rectangle:
+            Width: =972
+            ZIndex: =31
+            Y: =124
+            X: =53
+            Height: =57
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Visible: =ShowStatus
+
+        Details_Status As label:
+            Text: =LookUp(Translations, Key = "bookingdetails.status.title" && Language.Value = AppUserLang, Text)
+            Size: =15
+            ZIndex: =32
+            Width: =94
+            Y: =134
+            X: =120
+            FontWeight: =FontWeight.Bold
+            Color: =RGBA(0, 18, 107, 1)
+            Visible: =ShowStatus
+
+        Icon1 As icon.ListWatchlistRemind:
+            Icon: =Icon.ListWatchlistRemind
+            X: =81
+            Y: =135
+            Width: =35
+            Height: =35
+            ZIndex: =33
+            Visible: =ShowStatus
+
+        Details_DeskNum_1 As label:
+            Text: |-
+                =//If(StartDate < Today(), LookUp(Translations, Key = "bookingdetails.status.completed" && Language.Value = AppUserLang, Text), LookUp(Translations, Key = "bookingdetails.status.booked" && Language.Value = AppUserLang, Text))
+                If(Status = "Cancelled", LookUp(Translations, Key = "bookingdetails.status.cancelled" && Language.Value = AppUserLang, Text), If(Status = "Confirmed" && StartDate < Today(), LookUp(Translations, Key = "bookingdetails.status.completed" && Language.Value = AppUserLang, Text), LookUp(Translations, Key = "bookingdetails.status.booked" && Language.Value = AppUserLang, Text)))
+            FontWeight: =FontWeight.Bold
+            X: =218
+            Y: =136
+            Width: =216
+            Height: =34
+            ZIndex: =34
+            Visible: =ShowStatus
+
+    BookingDetailsCard As group:
+        ZIndex: =36
+        Height: =5
+        Width: =5
+        Y: =40
+        X: =40
+
+        CardRectangle As rectangle:
+            Width: =399
+            ZIndex: =25
+            Y: =196
+            X: =470
+            Height: =228
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+
+        Details_BookingDetailsLabel As label:
+            Text: =LookUp(Translations, Key = "bookingdetails.details.title" && Language.Value = AppUserLang, Text)
+            Size: =15
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Bold
+            X: =538
+            Y: =198
+            Width: =169
+            Height: =80
+            ZIndex: =26
+
+        TimeIcon As icon.Clock:
+            Y: =218
+            X: =496
+            ZIndex: =27
+            Icon: =Icon.Clock
+            Height: =35
+            Width: =35
+
+        Details_DatenTimeLabel As label:
+            Text: =StartTime & " - " & EndTime
+            Size: =14
+            FontWeight: =FontWeight.Semibold
+            X: =496
+            Y: =262
+            Width: =375
+            Height: =51
+            ZIndex: =28
+
+        Details_DatenTimeLabel_1 As label:
+            Text: |-
+                =If(AppUserLang = "fr", Text(
+                    StartDate,
+                    "[$-fr-FR]dddd, mmmm d, yyyy"
+                ), Text(
+                    StartDate,
+                    "[$-en-US]dddd, mmmm d, yyyy"
+                ))
+            Size: =14
+            FontWeight: =FontWeight.Semibold
+            X: =494
+            Y: =291
+            Width: =375
+            Height: =51
+            ZIndex: =35
+
+    BookingLocationCard As group:
+        ZIndex: =36
+        Height: =5
+        Width: =5
+        Y: =40
+        X: =40
+
+        CardRectangle_2 As rectangle:
+            Width: =400
+            ZIndex: =15
+            Y: =196
+            X: =53
+            Height: =228
+            BorderColor: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+
+        Details_BuildingInfoLabel As label:
+            Text: =LookUp(Translations, Key = "bookingdetails.building.info.title" && Language.Value = AppUserLang, Text)
+            Size: =15
+            Color: =RGBA(0, 18, 107, 1)
+            FontWeight: =FontWeight.Bold
+            X: =118
+            Y: =210
+            Width: =221
+            Height: =58
+            ZIndex: =16
+
+        BuildingInfoIcon As icon.OfficeBuilding:
+            Y: =221
+            X: =81
+            ZIndex: =17
+            Icon: =Icon.OfficeBuilding
+            Height: =35
+            Width: =35
+
+        Details_FloorNum As label:
+            Text: |-
+                =LookUp(Translations, Key = "appointments.location.floor" && Language.Value = AppUserLang, Text) & ": " & BookingResultsGallery.Selected.FloorNumber
+            Size: =14
+            ZIndex: =18
+            Height: =39
+            Width: =304
+            Y: =364
+            X: =81
+            FontWeight: =FontWeight.Semibold
+            AutoHeight: =true
+
+        Details_DeskNum As label:
+            Text: |-
+                =LookUp(Translations, Key = "bookingdetails.building.info.desk" && Language.Value = AppUserLang, Text) & ": " & DeskNum
+            FontWeight: =FontWeight.Bold
+            X: =81
+            Y: =272
+            Width: =161
+            Height: =38
+            ZIndex: =20
+            Size: =16
+
+        Details_Building As label:
+            Text: =Building
+            Size: =14
+            ZIndex: =22
+            Height: =38
+            Width: =286
+            Y: =311
+            X: =81
+            FontWeight: =FontWeight.Semibold
+            AutoHeight: =true
+
+        Details_City As label:
+            Text: =City
+            Size: =14
+            ZIndex: =24
+            Height: =31
+            Width: =171
+            Y: =337
+            X: =81
+            FontWeight: =FontWeight.Semibold
+            AutoHeight: =true
+
+    Details_CancelBtn As button:
+        Text: =LookUp(Translations, Key = "bookingdetails.cancel" && Language.Value = AppUserLang, Text)
+        HoverFill: =ColorFade(Self.Fill, -20%)
+        RadiusBottomLeft: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        RadiusBottomRight: =0
+        Color: =RGBA(230, 230, 230, 1)
+        DisplayMode: =
+        Fill: =RGBA(149, 149, 149, 1)
+        X: =53
+        Y: =466
+        Width: =482
+        Height: =56
+        ZIndex: =44
+        Visible: =Status = "Confirmed" && StartDate >= Today()
+        OnSelect: |
+            =Patch(
+                Reservations,
+                First(
+                    Filter(
+                        Reservations,
+                        ID = ReservationID
+                    )
+                ),
+                {
+                    Status: {
+                        '@odata.type': "#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference",
+                        Value: "Cancelled"
+                    }
+                }
+            );
+            //Refresh(Reservations);
+            UpdateContext({Status: "Cancelled"});
+
+    FloorPlanModal_1 As group:
+        ZIndex: =44
+        Height: =5
+        Width: =5
+        Y: =40
+        X: =40
+
+        ModalBackground_2 As rectangle:
+            Height: =Parent.Height
+            ZIndex: =39
+            Width: =Parent.Width
+            Fill: =RGBA(0, 0, 0, 0.5)
+            Visible: =_showFloorPlan
+
+        ModalBox_2 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Y: =(Parent.Height-ModalBox_2.Height)/2
+            X: =(Parent.Width-ModalBox_2.Width)/2
+            Width: =Parent.Width*0.9
+            Height: =Parent.Height*0.9
+            ZIndex: =40
+            Visible: =_showFloorPlan
+
+        FloorPlanImage_1 As image:
+            Image: =DeskFloorPlan
+            ZIndex: =41
+            Y: =101
+            Visible: =_showFloorPlan
+            Height: =566
+            Width: =1134
+            X: =116
+
+        CloseIcon As icon.Cancel:
+            Color: =RGBA(0, 0, 0, 1)
+            X: =1204
+            Y: =66
+            Width: =46
+            Height: =46
+            Icon: =Icon.Cancel
+            ZIndex: =42
+            Visible: =_showFloorPlan
+            OnSelect: |
+                =UpdateContext({_showFloorPlan: false});
+
+        ModalTitle As label:
+            Text: =DeskNum
+            Size: =35
+            ZIndex: =43
+            Visible: =_showFloorPlan
+            Height: =47
+            Width: =151
+            Y: =56
+            X: =608
+            Align: =Align.Center
+            FontWeight: =FontWeight.Lighter
+            Color: =RGBA(0, 13, 75, 1)
+
+    Group1 As group:
+        X: =40
+        Y: =40
+        Width: =5
+        Height: =5
+        ZIndex: =44
+
+        Rectangle1 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            X: =887
+            Y: =196
+            Width: =136
+            Height: =228
+            ZIndex: =36
+            OnSelect: |-
+                =UpdateContext({_showFloorPlan: true});
+
+        Icon2 As icon.Attachment:
+            Icon: =Icon.PaperClip
+            X: =914
+            Y: =240
+            Width: =83
+            Height: =108
+            ZIndex: =37
+            OnSelect: |-
+                =UpdateContext({_showFloorPlan: true});
+
+        Label1 As label:
+            Text: =LookUp(Translations, Key = "bookingdetails.floorplan.title" && Language.Value = AppUserLang, Text)
+            Align: =Align.Center
+            X: =888
+            Y: =353
+            Width: =136
+            ZIndex: =38
+            OnSelect: |-
+                =UpdateContext({_showFloorPlan: true});
+

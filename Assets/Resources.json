@@ -1,0 +1,82 @@
+{
+  "Resources": [
+    {
+      "Content": "Image",
+      "FileName": "/ctrllib/image/images/SampleImage.svg",
+      "IsSampleData": true,
+      "IsWritable": false,
+      "Name": "SampleImage",
+      "Path": "/ctrllib/image/images/SampleImage.svg",
+      "ResourceKind": "Uri",
+      "RootPath": "ms-appx:///ctrllib/image/images/SampleImage.svg",
+      "Schema": "i",
+      "Type": "ResourceInfo"
+    },
+    {
+      "Content": "Image",
+      "FileName": "0001.png",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Name": "Receptionist_Isometric (1)",
+      "Path": "Assets\\Images\\0001.png",
+      "ResourceKind": "LocalFile",
+      "Schema": "i",
+      "Type": "ResourceInfo"
+    },
+    {
+      "Content": "Image",
+      "FileName": "0002.gif",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Name": "Infinity-5s-200px",
+      "Path": "Assets\\Images\\0002.gif",
+      "ResourceKind": "LocalFile",
+      "Schema": "i",
+      "Type": "ResourceInfo"
+    },
+    {
+      "Content": "Image",
+      "FileName": "0004.png",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Name": "Search-illustration",
+      "Path": "Assets\\Images\\0004.png",
+      "ResourceKind": "LocalFile",
+      "Schema": "i",
+      "Type": "ResourceInfo"
+    },
+    {
+      "Content": "Image",
+      "FileName": "0005.svg",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Name": "Online research_Two Color",
+      "Path": "Assets\\Images\\0005.svg",
+      "ResourceKind": "LocalFile",
+      "Schema": "i",
+      "Type": "ResourceInfo"
+    },
+    {
+      "Content": "Image",
+      "FileName": "0006.svg",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Name": "map-marker",
+      "Path": "Assets\\Images\\0006.svg",
+      "ResourceKind": "LocalFile",
+      "Schema": "i",
+      "Type": "ResourceInfo"
+    },
+    {
+      "Content": "Image",
+      "FileName": "0008.svg",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Name": "calendar-check",
+      "Path": "Assets\\Images\\0008.svg",
+      "ResourceKind": "LocalFile",
+      "Schema": "i",
+      "Type": "ResourceInfo"
+    }
+  ]
+}
