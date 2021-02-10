@@ -44,13 +44,13 @@
     "EnableInstrumentation": false,
     "ErrorCount": 24,
     "FileID": "177aced7-de7c-43c3-84b6-5a9cfec259e2",
-    "Id": "e29963f4-3be3-4f73-93b4-d1c0a9dd7719",
+    "Id": "71b645eb-fff8-4b39-9195-426be1ab9523",
     "InstrumentationKey": "",
-    "Name": "Desk-Booking+%255bPROTOTYPE%255d.msapp",
+    "Name": "Desk-BookingV1-1.msapp",
     "OriginatingVersion": "1.300"
   },
   "PublishInfo": {
-    "AppName": "Desk-Booking [PROTOTYPE]",
+    "AppName": "Desk-BookingV1-1",
     "BackgroundColor": "rgba(0, 176, 240, 1)",
     "IconColor": "RGBA(255,255,255,1)",
     "IconName": "Edit",

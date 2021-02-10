@@ -18,6 +18,12 @@
         Font: =Font.'Lato Hairline'
         Color: =RGBA(0, 13, 75, 1)
 
+    Label3 As label:
+        Text: ="TEST"
+        X: =40
+        Y: =545
+        ZIndex: =9
+
     Language As group:
         ZIndex: =9
         Height: =5
