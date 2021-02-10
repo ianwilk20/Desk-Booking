@@ -19,7 +19,7 @@
         Color: =RGBA(0, 13, 75, 1)
 
     Label3 As label:
-        Text: ="TEST"
+        Text: ="TEST 2"
         X: =40
         Y: =545
         ZIndex: =9
