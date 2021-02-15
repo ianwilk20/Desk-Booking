@@ -1,0 +1,15 @@
+Test_7F478737223C4B69 As AppTest:
+
+    "'7032b9f2-deda-4c95-9e38-0234901b828a' As TestSuite":
+        DisplayName: ="Suite"
+        Description: =""
+
+        "'52e09b93-745a-4280-879f-fdaffcbf505a' As TestCase":
+            DisplayName: ="Case"
+            Description: =""
+
+            Step1 As TestStep:
+                Description: ="Select 'DetailBtnIcon' in row 1 in 'Gallery5'"
+                Value: =Select(AppointmentsResultsGallery, 1, DetailBtnIcon)
+                Screen: =Appointments Screen
+

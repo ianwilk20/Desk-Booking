@@ -337,7 +337,7 @@
 
         Details_FloorNum As label:
             Text: |-
-                =LookUp(Translations, Key = "appointments.location.floor" && Language.Value = AppUserLang, Text) & ": " & BookingResultsGallery.Selected.FloorNumber
+                =LookUp(Translations, Key = "appointments.location.floor" && Language.Value = AppUserLang, Text) & ": " & FloorNum
             Size: =14
             ZIndex: =18
             Height: =39
@@ -385,11 +385,15 @@
         HoverFill: =ColorFade(Self.Fill, -20%)
         RadiusBottomLeft: =0
         RadiusTopLeft: =0
+        PressedFill: =
+        BorderColor: =RGBA(255, 0, 0, 1)
         RadiusTopRight: =0
+        PressedColor: =RGBA(255, 0, 0, 1)
         RadiusBottomRight: =0
-        Color: =RGBA(230, 230, 230, 1)
+        Color: =RGBA(255, 0, 0, 1)
+        HoverColor: =RGBA(255, 0, 0, 1)
         DisplayMode: =
-        Fill: =RGBA(149, 149, 149, 1)
+        Fill: =RGBA(0, 0, 0, 0)
         X: =53
         Y: =466
         Width: =482

@@ -1,9 +1,9 @@
 App As appinfo:
     OnStart: |
         =// save user email
-        Set(
-            AppUserEmail,
-            Lower(User().Email)
+        Concurrent(
+            Set(AppUserEmail, Lower(User().Email)),
+            Set(_appID,"71b2e555-1005-4710-a6d6-1fc715eb7f3d")
         );
         // set app language
         If(
@@ -69,5 +69,4 @@ App As appinfo:
                 }
             )
         );
-        //ateContext({ test: "Added this from Notepad++"});
 

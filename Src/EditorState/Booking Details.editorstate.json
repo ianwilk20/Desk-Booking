@@ -2386,7 +2386,14 @@
         "IsLockable": false,
         "NameMapSourceSchema": "?"
       },
-      "BorderColor",
+      {
+        "AFDDataSourceName": "",
+        "AutoRuleBindingEnabled": false,
+        "AutoRuleBindingString": "ColorFade(Self.Fill, -15%)",
+        "InvariantPropertyName": "BorderColor",
+        "IsLockable": false,
+        "NameMapSourceSchema": "?"
+      },
       "DisabledBorderColor",
       "PressedBorderColor",
       "HoverBorderColor",
@@ -2401,8 +2408,22 @@
         "NameMapSourceSchema": "?"
       },
       "DisabledColor",
-      "PressedColor",
-      "HoverColor",
+      {
+        "AFDDataSourceName": "",
+        "AutoRuleBindingEnabled": false,
+        "AutoRuleBindingString": "Self.Fill",
+        "InvariantPropertyName": "PressedColor",
+        "IsLockable": false,
+        "NameMapSourceSchema": "?"
+      },
+      {
+        "AFDDataSourceName": "",
+        "AutoRuleBindingEnabled": false,
+        "AutoRuleBindingString": "",
+        "InvariantPropertyName": "HoverColor",
+        "IsLockable": false,
+        "NameMapSourceSchema": "?"
+      },
       "DisplayMode",
       {
         "AFDDataSourceName": "",
@@ -2413,7 +2434,14 @@
         "NameMapSourceSchema": "?"
       },
       "DisabledFill",
-      "PressedFill",
+      {
+        "AFDDataSourceName": "",
+        "AutoRuleBindingEnabled": false,
+        "AutoRuleBindingString": "Self.Color",
+        "InvariantPropertyName": "PressedFill",
+        "IsLockable": false,
+        "NameMapSourceSchema": "?"
+      },
       {
         "AFDDataSourceName": "",
         "AutoRuleBindingEnabled": false,
@@ -2463,7 +2491,14 @@
         "IsLockable": false,
         "NameMapSourceSchema": "?"
       },
-      "BorderThickness",
+      {
+        "AFDDataSourceName": "",
+        "AutoRuleBindingEnabled": false,
+        "AutoRuleBindingString": "",
+        "InvariantPropertyName": "BorderThickness",
+        "IsLockable": false,
+        "NameMapSourceSchema": "?"
+      },
       "FocusedBorderThickness",
       "Size",
       "Italic",

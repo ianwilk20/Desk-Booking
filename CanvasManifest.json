@@ -10,6 +10,7 @@
     "AppDescription": "",
     "AppPreviewFlagsKey": [
       "delayloadscreens",
+      "errorhandling",
       "blockmovingcontrol",
       "projectionmapping",
       "usedisplaynamemetadata",
@@ -44,13 +45,13 @@
     "EnableInstrumentation": false,
     "ErrorCount": 24,
     "FileID": "177aced7-de7c-43c3-84b6-5a9cfec259e2",
-    "Id": "71b645eb-fff8-4b39-9195-426be1ab9523",
+    "Id": "ca12b987-e4da-46d2-9f79-9d1e1045dc63",
     "InstrumentationKey": "",
-    "Name": "Desk-BookingV1-1.msapp",
+    "Name": "Desk-Booking+%255bPROTOTYPE%255d.msapp",
     "OriginatingVersion": "1.300"
   },
   "PublishInfo": {
-    "AppName": "Desk-BookingV1-1",
+    "AppName": "Desk-Booking [PROTOTYPE]",
     "BackgroundColor": "rgba(0, 176, 240, 1)",
     "IconColor": "RGBA(255,255,255,1)",
     "IconName": "Edit",

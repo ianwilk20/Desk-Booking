@@ -18,12 +18,6 @@
         Font: =Font.'Lato Hairline'
         Color: =RGBA(0, 13, 75, 1)
 
-    Label3 As label:
-        Text: ="TEST"
-        X: =40
-        Y: =545
-        ZIndex: =9
-
     Language As group:
         ZIndex: =9
         Height: =5
@@ -89,13 +83,41 @@
                     )
                 );
                 If(
-                    !IsBlank(Data),
+                    !IsEmpty(Data),
                     Set(
                         AppUserLang,
                         If (
                             LangDropdown.SelectedText.Value = "French",
                             "fr",
                             "en"
+                        )
+                    );
+                    ClearCollect(
+                        MainNavOptions,
+                        Table(
+                            {
+                                Title: User().FullName,
+                                Icon: Icon.Person,
+                                Screen: 'Profile Screen'
+                            },
+                            {
+                                Title: LookUp(
+                                    Translations,
+                                    Key = "mainnav.appointments" And Language.Value = AppUserLang,
+                                    Text
+                                ),
+                                Icon: Icon.DetailList,
+                                Screen: 'Appointments Screen'
+                            },
+                            {
+                                Title: LookUp(
+                                    Translations,
+                                    Key = "mainnav.book" And Language.Value = AppUserLang,
+                                    Text
+                                ),
+                                Icon: Icon.Add,
+                                Screen: 'Booking Search'
+                            }
                         )
                     );
                     Notify(
