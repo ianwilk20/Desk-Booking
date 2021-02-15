@@ -4,10 +4,10 @@
         =UpdateContext(
             {
                 _selectedFilter: "upcoming",
-                _result: Filter(
+                _result: SortByColumns(Filter(
                     Reservations,
                     User = AppUserEmail && StartDate > Today()
-                )
+                ), "StartDate")
             }
         )
 
@@ -24,26 +24,27 @@
         Y: =17
         X: =42
 
-    "Gallery5 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+    "AppointmentsResultsGallery As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
         Items: =_result
-        TemplateSize: =112
-        TemplatePadding: =0
         Layout: =Layout.Vertical
-        X: =60
-        Y: =160
-        Width: =1246
-        Height: =485
+        TemplatePadding: =0
         ZIndex: =4
+        TemplateSize: =112
         Visible: =!IsEmpty(_result)
+        Height: =485
+        Width: =1246
+        Y: =160
+        X: =60
         OnSelect: |-
             =Set(reservationID, ThisItem.ID);Navigate('Booking Details', ScreenTransition.Cover, { reservationInfo: ThisItem})
 
         CardBackground As rectangle:
-            Width: =Parent.Width
             Y: =5
             ZIndex: =1
             Fill: =RGBA(255, 255, 255, 1)
-            OnSelect: =Select(Parent)
+            Width: =Parent.Width
+            OnSelect: |-
+                =Set(reservationID, ThisItem.ID);Navigate('Booking Details', ScreenTransition.Cover, { reservationInfo: ThisItem})
 
         BookingDeskName As label:
             Text: |-
@@ -71,6 +72,16 @@
             X: =35
             OnSelect: =Select(Parent)
 
+        Icon4 As icon.Post:
+            Icon: =Icon.Post
+            Color: =RGBA(0, 0, 0, 1)
+            X: =855
+            Y: =29
+            Width: =24
+            Height: =29
+            ZIndex: =13
+            OnSelect: =Select(Parent)
+
         DetailBtn As group:
             ZIndex: =13
             Height: =5
@@ -86,8 +97,8 @@
                 OnSelect: =Select(Parent)
 
             DetailBtnIcon As icon.ChevronRight:
-                AccessibleLabel: =Self.Tooltip
                 Tooltip: ="View item details"
+                AccessibleLabel: =Self.Tooltip
                 PaddingRight: =10
                 ZIndex: =12
                 PaddingBottom: =10
@@ -190,6 +201,21 @@
                 X: =251
                 FontWeight: =FontWeight.Semibold
 
+        Label3 As label:
+            Text: =If(ThisItem.Status.Value = "Cancelled", LookUp(Translations, Key = "bookingdetails.status.cancelled" && Language.Value = AppUserLang, Text), If(ThisItem.Status.Value = "Confirmed" && ThisItem.StartDate < Today(), LookUp(Translations, Key = "bookingdetails.status.completed" && Language.Value = AppUserLang, Text), LookUp(Translations, Key = "bookingdetails.status.booked" && Language.Value = AppUserLang, Text)))
+            X: =855
+            Y: =50
+            ZIndex: =14
+            OnSelect: =Select(Parent)
+
+        Label3_1 As label:
+            Text: ="Status"
+            FontWeight: =FontWeight.Semibold
+            X: =879
+            Y: =23
+            ZIndex: =15
+            OnSelect: =Select(Parent)
+
     Filter_UpcomingBtn As button:
         Text: =LookUp(Translations, Key = "appointments.filter.upcoming" && Language.Value = AppUserLang, Text)
         BorderColor: =RGBA(56, 96, 178, 1)
@@ -208,10 +234,10 @@
             =UpdateContext(
                 {
                     _selectedFilter: "upcoming",
-                    _result: Filter(
+                    _result: SortByColumns(Filter(
                         Reservations,
                         User = AppUserEmail && StartDate > Today()
-                    )
+                    ), "StartDate")
                 }
             )
 
@@ -248,7 +274,7 @@
         ZIndex: =11
 
         SearchMessageLabel_1 As label:
-            Text: =Switch(_selectedFilter, "last-30-days", "No past bookings were found", "upcoming", "No upcoming bookings were found")
+            Text: =Switch(_selectedFilter, "last-30-days", LookUp(Translations, Key = "appointments.filter.last.description" && Language.Value = AppUserLang, Text), LookUp(Translations, Key = "appointments.filter.upcoming.description" && Language.Value = AppUserLang, Text))
             ZIndex: =7
             Visible: =(IsEmpty(_result) || IsBlank(_result))
             Height: =111
@@ -261,11 +287,11 @@
             Color: =RGBA(0, 18, 107, 1)
 
         Button3 As button:
-            Text: ="Book Now"
+            Text: =LookUp(Translations, Key = "appointments.filter.booknow" && Language.Value = AppUserLang, Text)
             X: =585
             Y: =421
             Width: =196
-            Height: =45
+            Height: =59
             ZIndex: =10
             RadiusTopLeft: =0
             RadiusTopRight: =0

@@ -225,7 +225,8 @@
                 Reset(FloorDropdown);
                 // populate floor dropdown
                 //ClearCollect(FloorCol, {FloorNum: "Any"}); Collect(FloorCol, Distinct(Filter(Desks, 'Location:Building'.Value = BuildingDropdown.SelectedText.Value), FloorNumber));
-                ClearCollect(FloorColl, "Any");
+                If(AppUserLang = "fr", ClearCollect(FloorColl, "Toute"), ClearCollect(FloorColl, "Any"));
+                //ClearCollect(FloorColl, "Any");
                 Collect(FloorColl, ForAll(SortByColumns(Distinct(Filter(Desks, 'Location:Building'.Value = BuildingDropdown.SelectedText.'data-ADB4D7A662F548B49FAC2B986E348A1BResult').FloorNumber, FloorNumber), "Result"), Text(ThisRecord.Result)));
                 
 
@@ -301,6 +302,7 @@
         StartDatePicker As datepicker:
             InputTextPlaceholder: =
             DefaultDate: =Blank()
+            Language: =If(AppUserLang = "en", "en-US", "fr-FR")
             Width: =450
             BorderColor: =If(StartDatePicker.SelectedDate < Today() && !IsBlank(StartDatePicker.SelectedDate), Color.Red, RGBA(0, 18, 107, 1))
             X: =44
@@ -336,7 +338,7 @@
         X: =40
 
         StartDateDropdown As dropdown:
-            Items: =Timeslots
+            Items: =SortByColumns(Timeslots, "TimeInMin")
             AllowEmptySelection: =true
             Reset: =_startDateError
             DisplayMode: =If(IsBlank(StartDatePicker.SelectedDate) || _startDateError, DisplayMode.Disabled, DisplayMode.Edit )
@@ -499,7 +501,8 @@
                     DisplayMode.Edit
                 )
             OnSelect: |
-                =// start loading animation
+                =UpdateContext({_results: Blank()});
+                // start loading animation
                 UpdateContext({_isLoading: true});
                 // store form options
                 UpdateContext(
@@ -534,7 +537,7 @@
                     }
                 );
                 If(
-                    _floor = "Any",
+                    _floor = "Any" || _floor = "Toute",
                     ClearCollect(
                         _filteredDesks,
                         _Desks
@@ -544,7 +547,7 @@
                         Filter(
                             _Desks,
                             Value(_floor) = FloorNumber
-                        ).ID
+                        )
                     )
                 );
                 // filter out and store reserved desk IDs

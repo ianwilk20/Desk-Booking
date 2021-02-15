@@ -5,9 +5,9 @@
       "columnKind": "utf16CodeUnits",
       "invocations": [
         {
-          "endTimeUtc": "2021-02-10T15:35:58.753Z",
+          "endTimeUtc": "2021-02-15T17:07:08.793Z",
           "executionSuccessful": true,
-          "startTimeUtc": "2021-02-10T15:35:58.737Z"
+          "startTimeUtc": "2021-02-15T17:07:08.666Z"
         }
       ],
       "results": [
@@ -136,526 +136,6 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 6,
-                  "charOffset": 336,
-                  "snippet": {
-                    "text": "UpdateContext(\r\n    {\r\n        ShowSpinner: true,\r\n        EnableBookBtn: false\r\n    }\r\n);\r\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\r\nUpdateContext(\r\n    {\r\n        displayInfo: LookUp(\r\n            Desks,\r\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n            ID\r\n        )\r\n    }\r\n);\r\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\r\nPatch(\r\n    Reservations,\r\n    Defaults(Reservations),\r\n    {\r\n        StartDate: StartDate,\r\n        StartTime: StartTimeInMin,\r\n        EndTime: StartTimeInMin + LookUp(\r\n            Durations,\r\n            TimeLengthWritten = Duration,\r\n            TimeLength\r\n        ),\r\n        DeskID: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Id: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                ID\r\n            ),\r\n            Value: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                FloorNumber\r\n            )\r\n        },\r\n        Status: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Value: \"Confirmed\"\r\n        },\r\n        User: Lower(User().Email)\r\n    }\r\n);\r\nUpdateContext(\r\n    {\r\n        ShowSpinner: false,\r\n        EnableBookBtn: true,\r\n        StartDate: Blank(),\r\n        Duration: Blank(),\r\n        StartTime: Blank(),\r\n        EndTime: Blank(),\r\n        FloorNum: Blank(),\r\n        DeskNum: Blank(),\r\n        Building: Blank(),\r\n        City: Blank()\r\n    }\r\n);\r\nNavigate(\r\n    'Appointments Screen',\r\n    ScreenTransition.CoverRight\r\n);\r\n"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Booking Details",
-                "type": "Booking Details.Details_BookBtn"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "∂.Location_x003a_City.Value"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "app-SuggestRemoteExecutionHint-OpNotSupportedByColumn",
-          "ruleIndex": 1
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 1,
-                  "charOffset": 343,
-                  "snippet": {
-                    "text": "UpdateContext(\r\n    {\r\n        ShowSpinner: true,\r\n        EnableBookBtn: false\r\n    }\r\n);\r\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\r\nUpdateContext(\r\n    {\r\n        displayInfo: LookUp(\r\n            Desks,\r\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n            ID\r\n        )\r\n    }\r\n);\r\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\r\nPatch(\r\n    Reservations,\r\n    Defaults(Reservations),\r\n    {\r\n        StartDate: StartDate,\r\n        StartTime: StartTimeInMin,\r\n        EndTime: StartTimeInMin + LookUp(\r\n            Durations,\r\n            TimeLengthWritten = Duration,\r\n            TimeLength\r\n        ),\r\n        DeskID: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Id: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                ID\r\n            ),\r\n            Value: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                FloorNumber\r\n            )\r\n        },\r\n        Status: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Value: \"Confirmed\"\r\n        },\r\n        User: Lower(User().Email)\r\n    }\r\n);\r\nUpdateContext(\r\n    {\r\n        ShowSpinner: false,\r\n        EnableBookBtn: true,\r\n        StartDate: Blank(),\r\n        Duration: Blank(),\r\n        StartTime: Blank(),\r\n        EndTime: Blank(),\r\n        FloorNum: Blank(),\r\n        DeskNum: Blank(),\r\n        Building: Blank(),\r\n        City: Blank()\r\n    }\r\n);\r\nNavigate(\r\n    'Appointments Screen',\r\n    ScreenTransition.CoverRight\r\n);\r\n"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Booking Details",
-                "type": "Booking Details.Details_BookBtn"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "LookUp"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "app-SuggestRemoteExecutionHint",
-          "ruleIndex": 0
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 2,
-                  "charOffset": 318,
-                  "snippet": {
-                    "text": "UpdateContext(\r\n    {\r\n        ShowSpinner: true,\r\n        EnableBookBtn: false\r\n    }\r\n);\r\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\r\nUpdateContext(\r\n    {\r\n        displayInfo: LookUp(\r\n            Desks,\r\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n            ID\r\n        )\r\n    }\r\n);\r\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\r\nPatch(\r\n    Reservations,\r\n    Defaults(Reservations),\r\n    {\r\n        StartDate: StartDate,\r\n        StartTime: StartTimeInMin,\r\n        EndTime: StartTimeInMin + LookUp(\r\n            Durations,\r\n            TimeLengthWritten = Duration,\r\n            TimeLength\r\n        ),\r\n        DeskID: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Id: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                ID\r\n            ),\r\n            Value: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                FloorNumber\r\n            )\r\n        },\r\n        Status: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Value: \"Confirmed\"\r\n        },\r\n        User: Lower(User().Email)\r\n    }\r\n);\r\nUpdateContext(\r\n    {\r\n        ShowSpinner: false,\r\n        EnableBookBtn: true,\r\n        StartDate: Blank(),\r\n        Duration: Blank(),\r\n        StartTime: Blank(),\r\n        EndTime: Blank(),\r\n        FloorNum: Blank(),\r\n        DeskNum: Blank(),\r\n        Building: Blank(),\r\n        City: Blank()\r\n    }\r\n);\r\nNavigate(\r\n    'Appointments Screen',\r\n    ScreenTransition.CoverRight\r\n);\r\n"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Booking Details",
-                "type": "Booking Details.Details_BookBtn"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "LookUp"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "app-SuggestRemoteExecutionHint",
-          "ruleIndex": 0
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 2,
-                  "charOffset": 350,
-                  "snippet": {
-                    "text": "UpdateContext(\r\n    {\r\n        ShowSpinner: true,\r\n        EnableBookBtn: false\r\n    }\r\n);\r\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\r\nUpdateContext(\r\n    {\r\n        displayInfo: LookUp(\r\n            Desks,\r\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n            ID\r\n        )\r\n    }\r\n);\r\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\r\nPatch(\r\n    Reservations,\r\n    Defaults(Reservations),\r\n    {\r\n        StartDate: StartDate,\r\n        StartTime: StartTimeInMin,\r\n        EndTime: StartTimeInMin + LookUp(\r\n            Durations,\r\n            TimeLengthWritten = Duration,\r\n            TimeLength\r\n        ),\r\n        DeskID: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Id: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                ID\r\n            ),\r\n            Value: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                FloorNumber\r\n            )\r\n        },\r\n        Status: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Value: \"Confirmed\"\r\n        },\r\n        User: Lower(User().Email)\r\n    }\r\n);\r\nUpdateContext(\r\n    {\r\n        ShowSpinner: false,\r\n        EnableBookBtn: true,\r\n        StartDate: Blank(),\r\n        Duration: Blank(),\r\n        StartTime: Blank(),\r\n        EndTime: Blank(),\r\n        FloorNum: Blank(),\r\n        DeskNum: Blank(),\r\n        Building: Blank(),\r\n        City: Blank()\r\n    }\r\n);\r\nNavigate(\r\n    'Appointments Screen',\r\n    ScreenTransition.CoverRight\r\n);\r\n"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Booking Details",
-                "type": "Booking Details.Details_BookBtn"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "LookUp"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "app-SuggestRemoteExecutionHint",
-          "ruleIndex": 0
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 6,
-                  "charOffset": 996,
-                  "snippet": {
-                    "text": "UpdateContext(\r\n    {\r\n        ShowSpinner: true,\r\n        EnableBookBtn: false\r\n    }\r\n);\r\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\r\nUpdateContext(\r\n    {\r\n        displayInfo: LookUp(\r\n            Desks,\r\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n            ID\r\n        )\r\n    }\r\n);\r\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\r\nPatch(\r\n    Reservations,\r\n    Defaults(Reservations),\r\n    {\r\n        StartDate: StartDate,\r\n        StartTime: StartTimeInMin,\r\n        EndTime: StartTimeInMin + LookUp(\r\n            Durations,\r\n            TimeLengthWritten = Duration,\r\n            TimeLength\r\n        ),\r\n        DeskID: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Id: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                ID\r\n            ),\r\n            Value: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                FloorNumber\r\n            )\r\n        },\r\n        Status: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Value: \"Confirmed\"\r\n        },\r\n        User: Lower(User().Email)\r\n    }\r\n);\r\nUpdateContext(\r\n    {\r\n        ShowSpinner: false,\r\n        EnableBookBtn: true,\r\n        StartDate: Blank(),\r\n        Duration: Blank(),\r\n        StartTime: Blank(),\r\n        EndTime: Blank(),\r\n        FloorNum: Blank(),\r\n        DeskNum: Blank(),\r\n        Building: Blank(),\r\n        City: Blank()\r\n    }\r\n);\r\nNavigate(\r\n    'Appointments Screen',\r\n    ScreenTransition.CoverRight\r\n);\r\n"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Booking Details",
-                "type": "Booking Details.Details_BookBtn"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "∂.Location_x003a_City.Value"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "app-SuggestRemoteExecutionHint-OpNotSupportedByColumn",
-          "ruleIndex": 1
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 1,
-                  "charOffset": 1003,
-                  "snippet": {
-                    "text": "UpdateContext(\r\n    {\r\n        ShowSpinner: true,\r\n        EnableBookBtn: false\r\n    }\r\n);\r\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\r\nUpdateContext(\r\n    {\r\n        displayInfo: LookUp(\r\n            Desks,\r\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n            ID\r\n        )\r\n    }\r\n);\r\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\r\nPatch(\r\n    Reservations,\r\n    Defaults(Reservations),\r\n    {\r\n        StartDate: StartDate,\r\n        StartTime: StartTimeInMin,\r\n        EndTime: StartTimeInMin + LookUp(\r\n            Durations,\r\n            TimeLengthWritten = Duration,\r\n            TimeLength\r\n        ),\r\n        DeskID: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Id: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                ID\r\n            ),\r\n            Value: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                FloorNumber\r\n            )\r\n        },\r\n        Status: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Value: \"Confirmed\"\r\n        },\r\n        User: Lower(User().Email)\r\n    }\r\n);\r\nUpdateContext(\r\n    {\r\n        ShowSpinner: false,\r\n        EnableBookBtn: true,\r\n        StartDate: Blank(),\r\n        Duration: Blank(),\r\n        StartTime: Blank(),\r\n        EndTime: Blank(),\r\n        FloorNum: Blank(),\r\n        DeskNum: Blank(),\r\n        Building: Blank(),\r\n        City: Blank()\r\n    }\r\n);\r\nNavigate(\r\n    'Appointments Screen',\r\n    ScreenTransition.CoverRight\r\n);\r\n"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Booking Details",
-                "type": "Booking Details.Details_BookBtn"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "LookUp"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "app-SuggestRemoteExecutionHint",
-          "ruleIndex": 0
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 2,
-                  "charOffset": 978,
-                  "snippet": {
-                    "text": "UpdateContext(\r\n    {\r\n        ShowSpinner: true,\r\n        EnableBookBtn: false\r\n    }\r\n);\r\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\r\nUpdateContext(\r\n    {\r\n        displayInfo: LookUp(\r\n            Desks,\r\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n            ID\r\n        )\r\n    }\r\n);\r\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\r\nPatch(\r\n    Reservations,\r\n    Defaults(Reservations),\r\n    {\r\n        StartDate: StartDate,\r\n        StartTime: StartTimeInMin,\r\n        EndTime: StartTimeInMin + LookUp(\r\n            Durations,\r\n            TimeLengthWritten = Duration,\r\n            TimeLength\r\n        ),\r\n        DeskID: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Id: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                ID\r\n            ),\r\n            Value: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                FloorNumber\r\n            )\r\n        },\r\n        Status: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Value: \"Confirmed\"\r\n        },\r\n        User: Lower(User().Email)\r\n    }\r\n);\r\nUpdateContext(\r\n    {\r\n        ShowSpinner: false,\r\n        EnableBookBtn: true,\r\n        StartDate: Blank(),\r\n        Duration: Blank(),\r\n        StartTime: Blank(),\r\n        EndTime: Blank(),\r\n        FloorNum: Blank(),\r\n        DeskNum: Blank(),\r\n        Building: Blank(),\r\n        City: Blank()\r\n    }\r\n);\r\nNavigate(\r\n    'Appointments Screen',\r\n    ScreenTransition.CoverRight\r\n);\r\n"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Booking Details",
-                "type": "Booking Details.Details_BookBtn"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "LookUp"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "app-SuggestRemoteExecutionHint",
-          "ruleIndex": 0
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 2,
-                  "charOffset": 1010,
-                  "snippet": {
-                    "text": "UpdateContext(\r\n    {\r\n        ShowSpinner: true,\r\n        EnableBookBtn: false\r\n    }\r\n);\r\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\r\nUpdateContext(\r\n    {\r\n        displayInfo: LookUp(\r\n            Desks,\r\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n            ID\r\n        )\r\n    }\r\n);\r\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\r\nPatch(\r\n    Reservations,\r\n    Defaults(Reservations),\r\n    {\r\n        StartDate: StartDate,\r\n        StartTime: StartTimeInMin,\r\n        EndTime: StartTimeInMin + LookUp(\r\n            Durations,\r\n            TimeLengthWritten = Duration,\r\n            TimeLength\r\n        ),\r\n        DeskID: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Id: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                ID\r\n            ),\r\n            Value: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                FloorNumber\r\n            )\r\n        },\r\n        Status: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Value: \"Confirmed\"\r\n        },\r\n        User: Lower(User().Email)\r\n    }\r\n);\r\nUpdateContext(\r\n    {\r\n        ShowSpinner: false,\r\n        EnableBookBtn: true,\r\n        StartDate: Blank(),\r\n        Duration: Blank(),\r\n        StartTime: Blank(),\r\n        EndTime: Blank(),\r\n        FloorNum: Blank(),\r\n        DeskNum: Blank(),\r\n        Building: Blank(),\r\n        City: Blank()\r\n    }\r\n);\r\nNavigate(\r\n    'Appointments Screen',\r\n    ScreenTransition.CoverRight\r\n);\r\n"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Booking Details",
-                "type": "Booking Details.Details_BookBtn"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "LookUp"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "app-SuggestRemoteExecutionHint",
-          "ruleIndex": 0
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 6,
-                  "charOffset": 1221,
-                  "snippet": {
-                    "text": "UpdateContext(\r\n    {\r\n        ShowSpinner: true,\r\n        EnableBookBtn: false\r\n    }\r\n);\r\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\r\nUpdateContext(\r\n    {\r\n        displayInfo: LookUp(\r\n            Desks,\r\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n            ID\r\n        )\r\n    }\r\n);\r\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\r\nPatch(\r\n    Reservations,\r\n    Defaults(Reservations),\r\n    {\r\n        StartDate: StartDate,\r\n        StartTime: StartTimeInMin,\r\n        EndTime: StartTimeInMin + LookUp(\r\n            Durations,\r\n            TimeLengthWritten = Duration,\r\n            TimeLength\r\n        ),\r\n        DeskID: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Id: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                ID\r\n            ),\r\n            Value: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                FloorNumber\r\n            )\r\n        },\r\n        Status: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Value: \"Confirmed\"\r\n        },\r\n        User: Lower(User().Email)\r\n    }\r\n);\r\nUpdateContext(\r\n    {\r\n        ShowSpinner: false,\r\n        EnableBookBtn: true,\r\n        StartDate: Blank(),\r\n        Duration: Blank(),\r\n        StartTime: Blank(),\r\n        EndTime: Blank(),\r\n        FloorNum: Blank(),\r\n        DeskNum: Blank(),\r\n        Building: Blank(),\r\n        City: Blank()\r\n    }\r\n);\r\nNavigate(\r\n    'Appointments Screen',\r\n    ScreenTransition.CoverRight\r\n);\r\n"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Booking Details",
-                "type": "Booking Details.Details_BookBtn"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "∂.Location_x003a_City.Value"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "app-SuggestRemoteExecutionHint-OpNotSupportedByColumn",
-          "ruleIndex": 1
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 1,
-                  "charOffset": 1228,
-                  "snippet": {
-                    "text": "UpdateContext(\r\n    {\r\n        ShowSpinner: true,\r\n        EnableBookBtn: false\r\n    }\r\n);\r\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\r\nUpdateContext(\r\n    {\r\n        displayInfo: LookUp(\r\n            Desks,\r\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n            ID\r\n        )\r\n    }\r\n);\r\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\r\nPatch(\r\n    Reservations,\r\n    Defaults(Reservations),\r\n    {\r\n        StartDate: StartDate,\r\n        StartTime: StartTimeInMin,\r\n        EndTime: StartTimeInMin + LookUp(\r\n            Durations,\r\n            TimeLengthWritten = Duration,\r\n            TimeLength\r\n        ),\r\n        DeskID: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Id: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                ID\r\n            ),\r\n            Value: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                FloorNumber\r\n            )\r\n        },\r\n        Status: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Value: \"Confirmed\"\r\n        },\r\n        User: Lower(User().Email)\r\n    }\r\n);\r\nUpdateContext(\r\n    {\r\n        ShowSpinner: false,\r\n        EnableBookBtn: true,\r\n        StartDate: Blank(),\r\n        Duration: Blank(),\r\n        StartTime: Blank(),\r\n        EndTime: Blank(),\r\n        FloorNum: Blank(),\r\n        DeskNum: Blank(),\r\n        Building: Blank(),\r\n        City: Blank()\r\n    }\r\n);\r\nNavigate(\r\n    'Appointments Screen',\r\n    ScreenTransition.CoverRight\r\n);\r\n"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Booking Details",
-                "type": "Booking Details.Details_BookBtn"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "LookUp"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "app-SuggestRemoteExecutionHint",
-          "ruleIndex": 0
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 2,
-                  "charOffset": 1203,
-                  "snippet": {
-                    "text": "UpdateContext(\r\n    {\r\n        ShowSpinner: true,\r\n        EnableBookBtn: false\r\n    }\r\n);\r\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\r\nUpdateContext(\r\n    {\r\n        displayInfo: LookUp(\r\n            Desks,\r\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n            ID\r\n        )\r\n    }\r\n);\r\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\r\nPatch(\r\n    Reservations,\r\n    Defaults(Reservations),\r\n    {\r\n        StartDate: StartDate,\r\n        StartTime: StartTimeInMin,\r\n        EndTime: StartTimeInMin + LookUp(\r\n            Durations,\r\n            TimeLengthWritten = Duration,\r\n            TimeLength\r\n        ),\r\n        DeskID: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Id: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                ID\r\n            ),\r\n            Value: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                FloorNumber\r\n            )\r\n        },\r\n        Status: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Value: \"Confirmed\"\r\n        },\r\n        User: Lower(User().Email)\r\n    }\r\n);\r\nUpdateContext(\r\n    {\r\n        ShowSpinner: false,\r\n        EnableBookBtn: true,\r\n        StartDate: Blank(),\r\n        Duration: Blank(),\r\n        StartTime: Blank(),\r\n        EndTime: Blank(),\r\n        FloorNum: Blank(),\r\n        DeskNum: Blank(),\r\n        Building: Blank(),\r\n        City: Blank()\r\n    }\r\n);\r\nNavigate(\r\n    'Appointments Screen',\r\n    ScreenTransition.CoverRight\r\n);\r\n"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Booking Details",
-                "type": "Booking Details.Details_BookBtn"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "LookUp"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "app-SuggestRemoteExecutionHint",
-          "ruleIndex": 0
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 2,
-                  "charOffset": 1235,
-                  "snippet": {
-                    "text": "UpdateContext(\r\n    {\r\n        ShowSpinner: true,\r\n        EnableBookBtn: false\r\n    }\r\n);\r\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\r\nUpdateContext(\r\n    {\r\n        displayInfo: LookUp(\r\n            Desks,\r\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n            ID\r\n        )\r\n    }\r\n);\r\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\r\nPatch(\r\n    Reservations,\r\n    Defaults(Reservations),\r\n    {\r\n        StartDate: StartDate,\r\n        StartTime: StartTimeInMin,\r\n        EndTime: StartTimeInMin + LookUp(\r\n            Durations,\r\n            TimeLengthWritten = Duration,\r\n            TimeLength\r\n        ),\r\n        DeskID: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Id: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                ID\r\n            ),\r\n            Value: LookUp(\r\n                Desks,\r\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\r\n                FloorNumber\r\n            )\r\n        },\r\n        Status: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Value: \"Confirmed\"\r\n        },\r\n        User: Lower(User().Email)\r\n    }\r\n);\r\nUpdateContext(\r\n    {\r\n        ShowSpinner: false,\r\n        EnableBookBtn: true,\r\n        StartDate: Blank(),\r\n        Duration: Blank(),\r\n        StartTime: Blank(),\r\n        EndTime: Blank(),\r\n        FloorNum: Blank(),\r\n        DeskNum: Blank(),\r\n        Building: Blank(),\r\n        City: Blank()\r\n    }\r\n);\r\nNavigate(\r\n    'Appointments Screen',\r\n    ScreenTransition.CoverRight\r\n);\r\n"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Booking Details",
-                "type": "Booking Details.Details_BookBtn"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "LookUp"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "app-SuggestRemoteExecutionHint",
-          "ruleIndex": 0
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Booking Details.Details_CancelBtn.OnSelect"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Booking Details.Details_CancelBtn.OnSelect",
-                  "relativeAddress": 0
-                },
-                "region": {
-                  "charLength": 100,
-                  "charOffset": 31,
-                  "snippet": {
-                    "text": "Patch(\r\n    Reservations,\r\n    First(\r\n        Filter(\r\n            Reservations,\r\n            ID = ReservationID\r\n        )\r\n    ),\r\n    {\r\n        Status: {\r\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\r\n            Value: \"Cancelled\"\r\n        }\r\n    }\r\n);\r\n//Refresh(Reservations);\r\nUpdateContext({Status: \"Cancelled\"});\r\n"
-                  }
-                }
-              },
-              "properties": {
-                "member": "OnSelect",
-                "module": "Booking Details",
-                "type": "Booking Details.Details_CancelBtn"
-              }
-            }
-          ],
-          "message": {
-            "arguments": [
-              "First"
-            ],
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "app-SuggestRemoteExecutionHint-OpNotSupportedByService",
-          "ruleIndex": 2
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
                   "fullyQualifiedName": "Booking Search.BuildingDropdown.OnChange"
                 }
               ],
@@ -666,9 +146,9 @@
                 },
                 "region": {
                   "charLength": 6,
-                  "charOffset": 426,
+                  "charOffset": 511,
                   "snippet": {
-                    "text": "// clear search results\r\nUpdateContext({_results: Table()});\r\n// clear dependent dropdowns\r\nReset(FloorDropdown);\r\n// populate floor dropdown\r\n//ClearCollect(FloorCol, {FloorNum: \"Any\"}); Collect(FloorCol, Distinct(Filter(Desks, 'Location:Building'.Value = BuildingDropdown.SelectedText.Value), FloorNumber));\r\nClearCollect(FloorColl, \"Any\");\r\nCollect(FloorColl, ForAll(SortByColumns(Distinct(Filter(Desks, 'Location:Building'.Value = BuildingDropdown.SelectedText.Result).FloorNumber, FloorNumber), \"Result\"), Text(ThisRecord.Result)));\r\n\r\n"
+                    "text": "// clear search results\nUpdateContext({_results: Table()});\n// clear dependent dropdowns\nReset(FloorDropdown);\n// populate floor dropdown\n//ClearCollect(FloorCol, {FloorNum: \"Any\"}); Collect(FloorCol, Distinct(Filter(Desks, 'Location:Building'.Value = BuildingDropdown.SelectedText.Value), FloorNumber));\nIf(AppUserLang = \"fr\", ClearCollect(FloorColl, \"Toute\"), ClearCollect(FloorColl, \"Any\"));\n//ClearCollect(FloorColl, \"Any\");\nCollect(FloorColl, ForAll(SortByColumns(Distinct(Filter(Desks, 'Location:Building'.Value = BuildingDropdown.SelectedText.Result).FloorNumber, FloorNumber), \"Result\"), Text(ThisRecord.Result)));\n\n"
                   }
                 }
               },
@@ -706,9 +186,9 @@
                 },
                 "region": {
                   "charLength": 1,
-                  "charOffset": 433,
+                  "charOffset": 518,
                   "snippet": {
-                    "text": "// clear search results\r\nUpdateContext({_results: Table()});\r\n// clear dependent dropdowns\r\nReset(FloorDropdown);\r\n// populate floor dropdown\r\n//ClearCollect(FloorCol, {FloorNum: \"Any\"}); Collect(FloorCol, Distinct(Filter(Desks, 'Location:Building'.Value = BuildingDropdown.SelectedText.Value), FloorNumber));\r\nClearCollect(FloorColl, \"Any\");\r\nCollect(FloorColl, ForAll(SortByColumns(Distinct(Filter(Desks, 'Location:Building'.Value = BuildingDropdown.SelectedText.Result).FloorNumber, FloorNumber), \"Result\"), Text(ThisRecord.Result)));\r\n\r\n"
+                    "text": "// clear search results\nUpdateContext({_results: Table()});\n// clear dependent dropdowns\nReset(FloorDropdown);\n// populate floor dropdown\n//ClearCollect(FloorCol, {FloorNum: \"Any\"}); Collect(FloorCol, Distinct(Filter(Desks, 'Location:Building'.Value = BuildingDropdown.SelectedText.Value), FloorNumber));\nIf(AppUserLang = \"fr\", ClearCollect(FloorColl, \"Toute\"), ClearCollect(FloorColl, \"Any\"));\n//ClearCollect(FloorColl, \"Any\");\nCollect(FloorColl, ForAll(SortByColumns(Distinct(Filter(Desks, 'Location:Building'.Value = BuildingDropdown.SelectedText.Result).FloorNumber, FloorNumber), \"Result\"), Text(ThisRecord.Result)));\n\n"
                   }
                 }
               },
@@ -746,9 +226,9 @@
                 },
                 "region": {
                   "charLength": 6,
-                  "charOffset": 781,
+                  "charOffset": 791,
                   "snippet": {
-                    "text": "// start loading animation\r\nUpdateContext({_isLoading: true});\r\n// store form options\r\nUpdateContext(\r\n    {\r\n        _city: CityDropdown.SelectedText.Result,\r\n        _building: BuildingDropdown.SelectedText.Result,\r\n        _floor: FloorDropdown.SelectedText.Value,\r\n        _startDate: StartDatePicker.SelectedDate,\r\n        _startTime: LookUp(\r\n            Timeslots,\r\n            TimeFull = StartDateDropdown.SelectedText.TimeFull,\r\n            TimeInMin\r\n        ),\r\n        _duration: LookUp(\r\n            Durations,\r\n            TimeLengthWritten = DurationDropdown.SelectedText.TimeLengthWritten,\r\n            TimeLength\r\n        )\r\n    }\r\n);\r\n// store desks and reservations\r\nUpdateContext(\r\n    {\r\n        _Desks: Filter(\r\n            Desks,\r\n            'Location:City'.Value = _city && 'Location:Building'.Value = _building\r\n        ),\r\n        _reservations: Filter(\r\n            Reservations,\r\n            StartDate = _startDate && ((StartTime <= _startTime && EndTime > _startTime) || (StartTime < (_startTime + _duration) && EndTime > (_startTime + _duration)) || (StartTime >= _startTime && EndTime <= (_startTime + _duration)))\r\n        )\r\n    }\r\n);\r\nIf(\r\n    _floor = \"Any\",\r\n    ClearCollect(\r\n        _filteredDesks,\r\n        _Desks\r\n    ),\r\n    ClearCollect(\r\n        _filteredDesks,\r\n        Filter(\r\n            _Desks,\r\n            Value(_floor) = FloorNumber\r\n        ).ID\r\n    )\r\n);\r\n// filter out and store reserved desk IDs\r\nUpdateContext(\r\n    {\r\n        _ReservedDesksIDs: ForAll(\r\n            _reservations,\r\n            If(\r\n                Not(IsEmpty(DeskID)),\r\n                DeskID.Value,\r\n                \"\"\r\n            )\r\n        ).Value\r\n    }\r\n);\r\n// find available desks\r\nUpdateContext(\r\n    {\r\n        _results: SortByColumns(\r\n            Filter(\r\n                _filteredDesks,\r\n                Not(ID in _ReservedDesksIDs)\r\n            ),\r\n            \"DeskNumber\"\r\n        )\r\n    }\r\n);\r\n// end loading animation\r\nUpdateContext({_isLoading: false});\r\n"
+                    "text": "UpdateContext({_results: Blank()});\n// start loading animation\nUpdateContext({_isLoading: true});\n// store form options\nUpdateContext(\n    {\n        _city: CityDropdown.SelectedText.Result,\n        _building: BuildingDropdown.SelectedText.Result,\n        _floor: FloorDropdown.SelectedText.Value,\n        _startDate: StartDatePicker.SelectedDate,\n        _startTime: LookUp(\n            Timeslots,\n            TimeFull = StartDateDropdown.SelectedText.TimeFull,\n            TimeInMin\n        ),\n        _duration: LookUp(\n            Durations,\n            TimeLengthWritten = DurationDropdown.SelectedText.TimeLengthWritten,\n            TimeLength\n        )\n    }\n);\n// store desks and reservations\nUpdateContext(\n    {\n        _Desks: Filter(\n            Desks,\n            'Location:City'.Value = _city && 'Location:Building'.Value = _building\n        ),\n        _reservations: Filter(\n            Reservations,\n            StartDate = _startDate && ((StartTime <= _startTime && EndTime > _startTime) || (StartTime < (_startTime + _duration) && EndTime > (_startTime + _duration)) || (StartTime >= _startTime && EndTime <= (_startTime + _duration)))\n        )\n    }\n);\nIf(\n    _floor = \"Any\" || _floor = \"Toute\",\n    ClearCollect(\n        _filteredDesks,\n        _Desks\n    ),\n    ClearCollect(\n        _filteredDesks,\n        Filter(\n            _Desks,\n            Value(_floor) = FloorNumber\n        )\n    )\n);\n// filter out and store reserved desk IDs\nUpdateContext(\n    {\n        _ReservedDesksIDs: ForAll(\n            _reservations,\n            If(\n                Not(IsEmpty(DeskID)),\n                DeskID.Value,\n                \"\"\n            )\n        ).Value\n    }\n);\n// find available desks\nUpdateContext(\n    {\n        _results: SortByColumns(\n            Filter(\n                _filteredDesks,\n                Not(ID in _ReservedDesksIDs)\n            ),\n            \"DeskNumber\"\n        )\n    }\n);\n// end loading animation\nUpdateContext({_isLoading: false});\n"
                   }
                 }
               },
@@ -786,9 +266,9 @@
                 },
                 "region": {
                   "charLength": 1,
-                  "charOffset": 788,
+                  "charOffset": 798,
                   "snippet": {
-                    "text": "// start loading animation\r\nUpdateContext({_isLoading: true});\r\n// store form options\r\nUpdateContext(\r\n    {\r\n        _city: CityDropdown.SelectedText.Result,\r\n        _building: BuildingDropdown.SelectedText.Result,\r\n        _floor: FloorDropdown.SelectedText.Value,\r\n        _startDate: StartDatePicker.SelectedDate,\r\n        _startTime: LookUp(\r\n            Timeslots,\r\n            TimeFull = StartDateDropdown.SelectedText.TimeFull,\r\n            TimeInMin\r\n        ),\r\n        _duration: LookUp(\r\n            Durations,\r\n            TimeLengthWritten = DurationDropdown.SelectedText.TimeLengthWritten,\r\n            TimeLength\r\n        )\r\n    }\r\n);\r\n// store desks and reservations\r\nUpdateContext(\r\n    {\r\n        _Desks: Filter(\r\n            Desks,\r\n            'Location:City'.Value = _city && 'Location:Building'.Value = _building\r\n        ),\r\n        _reservations: Filter(\r\n            Reservations,\r\n            StartDate = _startDate && ((StartTime <= _startTime && EndTime > _startTime) || (StartTime < (_startTime + _duration) && EndTime > (_startTime + _duration)) || (StartTime >= _startTime && EndTime <= (_startTime + _duration)))\r\n        )\r\n    }\r\n);\r\nIf(\r\n    _floor = \"Any\",\r\n    ClearCollect(\r\n        _filteredDesks,\r\n        _Desks\r\n    ),\r\n    ClearCollect(\r\n        _filteredDesks,\r\n        Filter(\r\n            _Desks,\r\n            Value(_floor) = FloorNumber\r\n        ).ID\r\n    )\r\n);\r\n// filter out and store reserved desk IDs\r\nUpdateContext(\r\n    {\r\n        _ReservedDesksIDs: ForAll(\r\n            _reservations,\r\n            If(\r\n                Not(IsEmpty(DeskID)),\r\n                DeskID.Value,\r\n                \"\"\r\n            )\r\n        ).Value\r\n    }\r\n);\r\n// find available desks\r\nUpdateContext(\r\n    {\r\n        _results: SortByColumns(\r\n            Filter(\r\n                _filteredDesks,\r\n                Not(ID in _ReservedDesksIDs)\r\n            ),\r\n            \"DeskNumber\"\r\n        )\r\n    }\r\n);\r\n// end loading animation\r\nUpdateContext({_isLoading: false});\r\n"
+                    "text": "UpdateContext({_results: Blank()});\n// start loading animation\nUpdateContext({_isLoading: true});\n// store form options\nUpdateContext(\n    {\n        _city: CityDropdown.SelectedText.Result,\n        _building: BuildingDropdown.SelectedText.Result,\n        _floor: FloorDropdown.SelectedText.Value,\n        _startDate: StartDatePicker.SelectedDate,\n        _startTime: LookUp(\n            Timeslots,\n            TimeFull = StartDateDropdown.SelectedText.TimeFull,\n            TimeInMin\n        ),\n        _duration: LookUp(\n            Durations,\n            TimeLengthWritten = DurationDropdown.SelectedText.TimeLengthWritten,\n            TimeLength\n        )\n    }\n);\n// store desks and reservations\nUpdateContext(\n    {\n        _Desks: Filter(\n            Desks,\n            'Location:City'.Value = _city && 'Location:Building'.Value = _building\n        ),\n        _reservations: Filter(\n            Reservations,\n            StartDate = _startDate && ((StartTime <= _startTime && EndTime > _startTime) || (StartTime < (_startTime + _duration) && EndTime > (_startTime + _duration)) || (StartTime >= _startTime && EndTime <= (_startTime + _duration)))\n        )\n    }\n);\nIf(\n    _floor = \"Any\" || _floor = \"Toute\",\n    ClearCollect(\n        _filteredDesks,\n        _Desks\n    ),\n    ClearCollect(\n        _filteredDesks,\n        Filter(\n            _Desks,\n            Value(_floor) = FloorNumber\n        )\n    )\n);\n// filter out and store reserved desk IDs\nUpdateContext(\n    {\n        _ReservedDesksIDs: ForAll(\n            _reservations,\n            If(\n                Not(IsEmpty(DeskID)),\n                DeskID.Value,\n                \"\"\n            )\n        ).Value\n    }\n);\n// find available desks\nUpdateContext(\n    {\n        _results: SortByColumns(\n            Filter(\n                _filteredDesks,\n                Not(ID in _ReservedDesksIDs)\n            ),\n            \"DeskNumber\"\n        )\n    }\n);\n// end loading animation\nUpdateContext({_isLoading: false});\n"
                   }
                 }
               },
@@ -826,9 +306,9 @@
                 },
                 "region": {
                   "charLength": 2,
-                  "charOffset": 796,
+                  "charOffset": 806,
                   "snippet": {
-                    "text": "// start loading animation\r\nUpdateContext({_isLoading: true});\r\n// store form options\r\nUpdateContext(\r\n    {\r\n        _city: CityDropdown.SelectedText.Result,\r\n        _building: BuildingDropdown.SelectedText.Result,\r\n        _floor: FloorDropdown.SelectedText.Value,\r\n        _startDate: StartDatePicker.SelectedDate,\r\n        _startTime: LookUp(\r\n            Timeslots,\r\n            TimeFull = StartDateDropdown.SelectedText.TimeFull,\r\n            TimeInMin\r\n        ),\r\n        _duration: LookUp(\r\n            Durations,\r\n            TimeLengthWritten = DurationDropdown.SelectedText.TimeLengthWritten,\r\n            TimeLength\r\n        )\r\n    }\r\n);\r\n// store desks and reservations\r\nUpdateContext(\r\n    {\r\n        _Desks: Filter(\r\n            Desks,\r\n            'Location:City'.Value = _city && 'Location:Building'.Value = _building\r\n        ),\r\n        _reservations: Filter(\r\n            Reservations,\r\n            StartDate = _startDate && ((StartTime <= _startTime && EndTime > _startTime) || (StartTime < (_startTime + _duration) && EndTime > (_startTime + _duration)) || (StartTime >= _startTime && EndTime <= (_startTime + _duration)))\r\n        )\r\n    }\r\n);\r\nIf(\r\n    _floor = \"Any\",\r\n    ClearCollect(\r\n        _filteredDesks,\r\n        _Desks\r\n    ),\r\n    ClearCollect(\r\n        _filteredDesks,\r\n        Filter(\r\n            _Desks,\r\n            Value(_floor) = FloorNumber\r\n        ).ID\r\n    )\r\n);\r\n// filter out and store reserved desk IDs\r\nUpdateContext(\r\n    {\r\n        _ReservedDesksIDs: ForAll(\r\n            _reservations,\r\n            If(\r\n                Not(IsEmpty(DeskID)),\r\n                DeskID.Value,\r\n                \"\"\r\n            )\r\n        ).Value\r\n    }\r\n);\r\n// find available desks\r\nUpdateContext(\r\n    {\r\n        _results: SortByColumns(\r\n            Filter(\r\n                _filteredDesks,\r\n                Not(ID in _ReservedDesksIDs)\r\n            ),\r\n            \"DeskNumber\"\r\n        )\r\n    }\r\n);\r\n// end loading animation\r\nUpdateContext({_isLoading: false});\r\n"
+                    "text": "UpdateContext({_results: Blank()});\n// start loading animation\nUpdateContext({_isLoading: true});\n// store form options\nUpdateContext(\n    {\n        _city: CityDropdown.SelectedText.Result,\n        _building: BuildingDropdown.SelectedText.Result,\n        _floor: FloorDropdown.SelectedText.Value,\n        _startDate: StartDatePicker.SelectedDate,\n        _startTime: LookUp(\n            Timeslots,\n            TimeFull = StartDateDropdown.SelectedText.TimeFull,\n            TimeInMin\n        ),\n        _duration: LookUp(\n            Durations,\n            TimeLengthWritten = DurationDropdown.SelectedText.TimeLengthWritten,\n            TimeLength\n        )\n    }\n);\n// store desks and reservations\nUpdateContext(\n    {\n        _Desks: Filter(\n            Desks,\n            'Location:City'.Value = _city && 'Location:Building'.Value = _building\n        ),\n        _reservations: Filter(\n            Reservations,\n            StartDate = _startDate && ((StartTime <= _startTime && EndTime > _startTime) || (StartTime < (_startTime + _duration) && EndTime > (_startTime + _duration)) || (StartTime >= _startTime && EndTime <= (_startTime + _duration)))\n        )\n    }\n);\nIf(\n    _floor = \"Any\" || _floor = \"Toute\",\n    ClearCollect(\n        _filteredDesks,\n        _Desks\n    ),\n    ClearCollect(\n        _filteredDesks,\n        Filter(\n            _Desks,\n            Value(_floor) = FloorNumber\n        )\n    )\n);\n// filter out and store reserved desk IDs\nUpdateContext(\n    {\n        _ReservedDesksIDs: ForAll(\n            _reservations,\n            If(\n                Not(IsEmpty(DeskID)),\n                DeskID.Value,\n                \"\"\n            )\n        ).Value\n    }\n);\n// find available desks\nUpdateContext(\n    {\n        _results: SortByColumns(\n            Filter(\n                _filteredDesks,\n                Not(ID in _ReservedDesksIDs)\n            ),\n            \"DeskNumber\"\n        )\n    }\n);\n// end loading animation\nUpdateContext({_isLoading: false});\n"
                   }
                 }
               },
@@ -970,6 +450,706 @@
           },
           "ruleId": "app-SuggestRemoteExecutionHint",
           "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 6,
+                  "charOffset": 325,
+                  "snippet": {
+                    "text": "UpdateContext(\n    {\n        ShowSpinner: true,\n        EnableBookBtn: false\n    }\n);\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\nUpdateContext(\n    {\n        displayInfo: LookUp(\n            Desks,\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n            ID\n        )\n    }\n);\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\nPatch(\n    Reservations,\n    Defaults(Reservations),\n    {\n        StartDate: StartDate,\n        StartTime: StartTimeInMin,\n        EndTime: StartTimeInMin + LookUp(\n            Durations,\n            TimeLengthWritten = Duration,\n            TimeLength\n        ),\n        DeskID: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Id: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                ID\n            ),\n            Value: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                FloorNumber\n            )\n        },\n        Status: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Value: \"Confirmed\"\n        },\n        User: Lower(User().Email)\n    }\n);\nUpdateContext(\n    {\n        ShowSpinner: false,\n        EnableBookBtn: true,\n        StartDate: Blank(),\n        Duration: Blank(),\n        StartTime: Blank(),\n        EndTime: Blank(),\n        FloorNum: Blank(),\n        DeskNum: Blank(),\n        Building: Blank(),\n        City: Blank()\n    }\n);\nNavigate(\n    'Appointments Screen',\n    ScreenTransition.CoverRight\n);\n"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Booking Details",
+                "type": "Booking Details.Details_BookBtn"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "∂.Location_x003a_City.Value"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-SuggestRemoteExecutionHint-OpNotSupportedByColumn",
+          "ruleIndex": 1
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 1,
+                  "charOffset": 332,
+                  "snippet": {
+                    "text": "UpdateContext(\n    {\n        ShowSpinner: true,\n        EnableBookBtn: false\n    }\n);\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\nUpdateContext(\n    {\n        displayInfo: LookUp(\n            Desks,\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n            ID\n        )\n    }\n);\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\nPatch(\n    Reservations,\n    Defaults(Reservations),\n    {\n        StartDate: StartDate,\n        StartTime: StartTimeInMin,\n        EndTime: StartTimeInMin + LookUp(\n            Durations,\n            TimeLengthWritten = Duration,\n            TimeLength\n        ),\n        DeskID: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Id: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                ID\n            ),\n            Value: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                FloorNumber\n            )\n        },\n        Status: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Value: \"Confirmed\"\n        },\n        User: Lower(User().Email)\n    }\n);\nUpdateContext(\n    {\n        ShowSpinner: false,\n        EnableBookBtn: true,\n        StartDate: Blank(),\n        Duration: Blank(),\n        StartTime: Blank(),\n        EndTime: Blank(),\n        FloorNum: Blank(),\n        DeskNum: Blank(),\n        Building: Blank(),\n        City: Blank()\n    }\n);\nNavigate(\n    'Appointments Screen',\n    ScreenTransition.CoverRight\n);\n"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Booking Details",
+                "type": "Booking Details.Details_BookBtn"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "LookUp"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-SuggestRemoteExecutionHint",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 2,
+                  "charOffset": 307,
+                  "snippet": {
+                    "text": "UpdateContext(\n    {\n        ShowSpinner: true,\n        EnableBookBtn: false\n    }\n);\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\nUpdateContext(\n    {\n        displayInfo: LookUp(\n            Desks,\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n            ID\n        )\n    }\n);\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\nPatch(\n    Reservations,\n    Defaults(Reservations),\n    {\n        StartDate: StartDate,\n        StartTime: StartTimeInMin,\n        EndTime: StartTimeInMin + LookUp(\n            Durations,\n            TimeLengthWritten = Duration,\n            TimeLength\n        ),\n        DeskID: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Id: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                ID\n            ),\n            Value: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                FloorNumber\n            )\n        },\n        Status: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Value: \"Confirmed\"\n        },\n        User: Lower(User().Email)\n    }\n);\nUpdateContext(\n    {\n        ShowSpinner: false,\n        EnableBookBtn: true,\n        StartDate: Blank(),\n        Duration: Blank(),\n        StartTime: Blank(),\n        EndTime: Blank(),\n        FloorNum: Blank(),\n        DeskNum: Blank(),\n        Building: Blank(),\n        City: Blank()\n    }\n);\nNavigate(\n    'Appointments Screen',\n    ScreenTransition.CoverRight\n);\n"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Booking Details",
+                "type": "Booking Details.Details_BookBtn"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "LookUp"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-SuggestRemoteExecutionHint",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 2,
+                  "charOffset": 339,
+                  "snippet": {
+                    "text": "UpdateContext(\n    {\n        ShowSpinner: true,\n        EnableBookBtn: false\n    }\n);\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\nUpdateContext(\n    {\n        displayInfo: LookUp(\n            Desks,\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n            ID\n        )\n    }\n);\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\nPatch(\n    Reservations,\n    Defaults(Reservations),\n    {\n        StartDate: StartDate,\n        StartTime: StartTimeInMin,\n        EndTime: StartTimeInMin + LookUp(\n            Durations,\n            TimeLengthWritten = Duration,\n            TimeLength\n        ),\n        DeskID: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Id: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                ID\n            ),\n            Value: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                FloorNumber\n            )\n        },\n        Status: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Value: \"Confirmed\"\n        },\n        User: Lower(User().Email)\n    }\n);\nUpdateContext(\n    {\n        ShowSpinner: false,\n        EnableBookBtn: true,\n        StartDate: Blank(),\n        Duration: Blank(),\n        StartTime: Blank(),\n        EndTime: Blank(),\n        FloorNum: Blank(),\n        DeskNum: Blank(),\n        Building: Blank(),\n        City: Blank()\n    }\n);\nNavigate(\n    'Appointments Screen',\n    ScreenTransition.CoverRight\n);\n"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Booking Details",
+                "type": "Booking Details.Details_BookBtn"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "LookUp"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-SuggestRemoteExecutionHint",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 6,
+                  "charOffset": 964,
+                  "snippet": {
+                    "text": "UpdateContext(\n    {\n        ShowSpinner: true,\n        EnableBookBtn: false\n    }\n);\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\nUpdateContext(\n    {\n        displayInfo: LookUp(\n            Desks,\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n            ID\n        )\n    }\n);\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\nPatch(\n    Reservations,\n    Defaults(Reservations),\n    {\n        StartDate: StartDate,\n        StartTime: StartTimeInMin,\n        EndTime: StartTimeInMin + LookUp(\n            Durations,\n            TimeLengthWritten = Duration,\n            TimeLength\n        ),\n        DeskID: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Id: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                ID\n            ),\n            Value: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                FloorNumber\n            )\n        },\n        Status: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Value: \"Confirmed\"\n        },\n        User: Lower(User().Email)\n    }\n);\nUpdateContext(\n    {\n        ShowSpinner: false,\n        EnableBookBtn: true,\n        StartDate: Blank(),\n        Duration: Blank(),\n        StartTime: Blank(),\n        EndTime: Blank(),\n        FloorNum: Blank(),\n        DeskNum: Blank(),\n        Building: Blank(),\n        City: Blank()\n    }\n);\nNavigate(\n    'Appointments Screen',\n    ScreenTransition.CoverRight\n);\n"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Booking Details",
+                "type": "Booking Details.Details_BookBtn"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "∂.Location_x003a_City.Value"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-SuggestRemoteExecutionHint-OpNotSupportedByColumn",
+          "ruleIndex": 1
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 1,
+                  "charOffset": 971,
+                  "snippet": {
+                    "text": "UpdateContext(\n    {\n        ShowSpinner: true,\n        EnableBookBtn: false\n    }\n);\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\nUpdateContext(\n    {\n        displayInfo: LookUp(\n            Desks,\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n            ID\n        )\n    }\n);\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\nPatch(\n    Reservations,\n    Defaults(Reservations),\n    {\n        StartDate: StartDate,\n        StartTime: StartTimeInMin,\n        EndTime: StartTimeInMin + LookUp(\n            Durations,\n            TimeLengthWritten = Duration,\n            TimeLength\n        ),\n        DeskID: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Id: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                ID\n            ),\n            Value: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                FloorNumber\n            )\n        },\n        Status: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Value: \"Confirmed\"\n        },\n        User: Lower(User().Email)\n    }\n);\nUpdateContext(\n    {\n        ShowSpinner: false,\n        EnableBookBtn: true,\n        StartDate: Blank(),\n        Duration: Blank(),\n        StartTime: Blank(),\n        EndTime: Blank(),\n        FloorNum: Blank(),\n        DeskNum: Blank(),\n        Building: Blank(),\n        City: Blank()\n    }\n);\nNavigate(\n    'Appointments Screen',\n    ScreenTransition.CoverRight\n);\n"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Booking Details",
+                "type": "Booking Details.Details_BookBtn"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "LookUp"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-SuggestRemoteExecutionHint",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 2,
+                  "charOffset": 946,
+                  "snippet": {
+                    "text": "UpdateContext(\n    {\n        ShowSpinner: true,\n        EnableBookBtn: false\n    }\n);\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\nUpdateContext(\n    {\n        displayInfo: LookUp(\n            Desks,\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n            ID\n        )\n    }\n);\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\nPatch(\n    Reservations,\n    Defaults(Reservations),\n    {\n        StartDate: StartDate,\n        StartTime: StartTimeInMin,\n        EndTime: StartTimeInMin + LookUp(\n            Durations,\n            TimeLengthWritten = Duration,\n            TimeLength\n        ),\n        DeskID: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Id: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                ID\n            ),\n            Value: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                FloorNumber\n            )\n        },\n        Status: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Value: \"Confirmed\"\n        },\n        User: Lower(User().Email)\n    }\n);\nUpdateContext(\n    {\n        ShowSpinner: false,\n        EnableBookBtn: true,\n        StartDate: Blank(),\n        Duration: Blank(),\n        StartTime: Blank(),\n        EndTime: Blank(),\n        FloorNum: Blank(),\n        DeskNum: Blank(),\n        Building: Blank(),\n        City: Blank()\n    }\n);\nNavigate(\n    'Appointments Screen',\n    ScreenTransition.CoverRight\n);\n"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Booking Details",
+                "type": "Booking Details.Details_BookBtn"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "LookUp"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-SuggestRemoteExecutionHint",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 2,
+                  "charOffset": 978,
+                  "snippet": {
+                    "text": "UpdateContext(\n    {\n        ShowSpinner: true,\n        EnableBookBtn: false\n    }\n);\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\nUpdateContext(\n    {\n        displayInfo: LookUp(\n            Desks,\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n            ID\n        )\n    }\n);\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\nPatch(\n    Reservations,\n    Defaults(Reservations),\n    {\n        StartDate: StartDate,\n        StartTime: StartTimeInMin,\n        EndTime: StartTimeInMin + LookUp(\n            Durations,\n            TimeLengthWritten = Duration,\n            TimeLength\n        ),\n        DeskID: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Id: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                ID\n            ),\n            Value: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                FloorNumber\n            )\n        },\n        Status: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Value: \"Confirmed\"\n        },\n        User: Lower(User().Email)\n    }\n);\nUpdateContext(\n    {\n        ShowSpinner: false,\n        EnableBookBtn: true,\n        StartDate: Blank(),\n        Duration: Blank(),\n        StartTime: Blank(),\n        EndTime: Blank(),\n        FloorNum: Blank(),\n        DeskNum: Blank(),\n        Building: Blank(),\n        City: Blank()\n    }\n);\nNavigate(\n    'Appointments Screen',\n    ScreenTransition.CoverRight\n);\n"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Booking Details",
+                "type": "Booking Details.Details_BookBtn"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "LookUp"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-SuggestRemoteExecutionHint",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 6,
+                  "charOffset": 1184,
+                  "snippet": {
+                    "text": "UpdateContext(\n    {\n        ShowSpinner: true,\n        EnableBookBtn: false\n    }\n);\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\nUpdateContext(\n    {\n        displayInfo: LookUp(\n            Desks,\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n            ID\n        )\n    }\n);\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\nPatch(\n    Reservations,\n    Defaults(Reservations),\n    {\n        StartDate: StartDate,\n        StartTime: StartTimeInMin,\n        EndTime: StartTimeInMin + LookUp(\n            Durations,\n            TimeLengthWritten = Duration,\n            TimeLength\n        ),\n        DeskID: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Id: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                ID\n            ),\n            Value: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                FloorNumber\n            )\n        },\n        Status: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Value: \"Confirmed\"\n        },\n        User: Lower(User().Email)\n    }\n);\nUpdateContext(\n    {\n        ShowSpinner: false,\n        EnableBookBtn: true,\n        StartDate: Blank(),\n        Duration: Blank(),\n        StartTime: Blank(),\n        EndTime: Blank(),\n        FloorNum: Blank(),\n        DeskNum: Blank(),\n        Building: Blank(),\n        City: Blank()\n    }\n);\nNavigate(\n    'Appointments Screen',\n    ScreenTransition.CoverRight\n);\n"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Booking Details",
+                "type": "Booking Details.Details_BookBtn"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "∂.Location_x003a_City.Value"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-SuggestRemoteExecutionHint-OpNotSupportedByColumn",
+          "ruleIndex": 1
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 1,
+                  "charOffset": 1191,
+                  "snippet": {
+                    "text": "UpdateContext(\n    {\n        ShowSpinner: true,\n        EnableBookBtn: false\n    }\n);\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\nUpdateContext(\n    {\n        displayInfo: LookUp(\n            Desks,\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n            ID\n        )\n    }\n);\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\nPatch(\n    Reservations,\n    Defaults(Reservations),\n    {\n        StartDate: StartDate,\n        StartTime: StartTimeInMin,\n        EndTime: StartTimeInMin + LookUp(\n            Durations,\n            TimeLengthWritten = Duration,\n            TimeLength\n        ),\n        DeskID: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Id: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                ID\n            ),\n            Value: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                FloorNumber\n            )\n        },\n        Status: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Value: \"Confirmed\"\n        },\n        User: Lower(User().Email)\n    }\n);\nUpdateContext(\n    {\n        ShowSpinner: false,\n        EnableBookBtn: true,\n        StartDate: Blank(),\n        Duration: Blank(),\n        StartTime: Blank(),\n        EndTime: Blank(),\n        FloorNum: Blank(),\n        DeskNum: Blank(),\n        Building: Blank(),\n        City: Blank()\n    }\n);\nNavigate(\n    'Appointments Screen',\n    ScreenTransition.CoverRight\n);\n"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Booking Details",
+                "type": "Booking Details.Details_BookBtn"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "LookUp"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-SuggestRemoteExecutionHint",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 2,
+                  "charOffset": 1166,
+                  "snippet": {
+                    "text": "UpdateContext(\n    {\n        ShowSpinner: true,\n        EnableBookBtn: false\n    }\n);\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\nUpdateContext(\n    {\n        displayInfo: LookUp(\n            Desks,\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n            ID\n        )\n    }\n);\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\nPatch(\n    Reservations,\n    Defaults(Reservations),\n    {\n        StartDate: StartDate,\n        StartTime: StartTimeInMin,\n        EndTime: StartTimeInMin + LookUp(\n            Durations,\n            TimeLengthWritten = Duration,\n            TimeLength\n        ),\n        DeskID: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Id: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                ID\n            ),\n            Value: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                FloorNumber\n            )\n        },\n        Status: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Value: \"Confirmed\"\n        },\n        User: Lower(User().Email)\n    }\n);\nUpdateContext(\n    {\n        ShowSpinner: false,\n        EnableBookBtn: true,\n        StartDate: Blank(),\n        Duration: Blank(),\n        StartTime: Blank(),\n        EndTime: Blank(),\n        FloorNum: Blank(),\n        DeskNum: Blank(),\n        Building: Blank(),\n        City: Blank()\n    }\n);\nNavigate(\n    'Appointments Screen',\n    ScreenTransition.CoverRight\n);\n"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Booking Details",
+                "type": "Booking Details.Details_BookBtn"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "LookUp"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-SuggestRemoteExecutionHint",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Booking Details.Details_BookBtn.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 2,
+                  "charOffset": 1198,
+                  "snippet": {
+                    "text": "UpdateContext(\n    {\n        ShowSpinner: true,\n        EnableBookBtn: false\n    }\n);\n//UpdateContext({ displayInfo: LookUp(Locations, Building = Building && City = City, ID) });\nUpdateContext(\n    {\n        displayInfo: LookUp(\n            Desks,\n            DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n            ID\n        )\n    }\n);\n// DOESN'T SEEM LIKE WE NEED TO SET THE TITLE\nPatch(\n    Reservations,\n    Defaults(Reservations),\n    {\n        StartDate: StartDate,\n        StartTime: StartTimeInMin,\n        EndTime: StartTimeInMin + LookUp(\n            Durations,\n            TimeLengthWritten = Duration,\n            TimeLength\n        ),\n        DeskID: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Id: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                ID\n            ),\n            Value: LookUp(\n                Desks,\n                DeskNumber = DeskNum && FloorNumber = FloorNum && 'Location:City'.Value = City && 'Location:Building'.Value = Building,\n                FloorNumber\n            )\n        },\n        Status: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Value: \"Confirmed\"\n        },\n        User: Lower(User().Email)\n    }\n);\nUpdateContext(\n    {\n        ShowSpinner: false,\n        EnableBookBtn: true,\n        StartDate: Blank(),\n        Duration: Blank(),\n        StartTime: Blank(),\n        EndTime: Blank(),\n        FloorNum: Blank(),\n        DeskNum: Blank(),\n        Building: Blank(),\n        City: Blank()\n    }\n);\nNavigate(\n    'Appointments Screen',\n    ScreenTransition.CoverRight\n);\n"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Booking Details",
+                "type": "Booking Details.Details_BookBtn"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "LookUp"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-SuggestRemoteExecutionHint",
+          "ruleIndex": 0
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Booking Details.Details_CancelBtn.OnSelect"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Booking Details.Details_CancelBtn.OnSelect",
+                  "relativeAddress": 0
+                },
+                "region": {
+                  "charLength": 95,
+                  "charOffset": 29,
+                  "snippet": {
+                    "text": "Patch(\n    Reservations,\n    First(\n        Filter(\n            Reservations,\n            ID = ReservationID\n        )\n    ),\n    {\n        Status: {\n            '@odata.type': \"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference\",\n            Value: \"Cancelled\"\n        }\n    }\n);\n//Refresh(Reservations);\nUpdateContext({Status: \"Cancelled\"});\n"
+                  }
+                }
+              },
+              "properties": {
+                "member": "OnSelect",
+                "module": "Booking Details",
+                "type": "Booking Details.Details_CancelBtn"
+              }
+            }
+          ],
+          "message": {
+            "arguments": [
+              "First"
+            ],
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-SuggestRemoteExecutionHint-OpNotSupportedByService",
+          "ruleIndex": 2
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Navigation.Gallery1.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Navigation.Gallery1.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "Navigation",
+                "type": "Navigation.Gallery1"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 3
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Navigation.Gallery1.TabIndex"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Navigation.Gallery1.TabIndex",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "TabIndex",
+                "module": "Navigation",
+                "type": "Navigation.Gallery1"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
+          "ruleIndex": 4
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Navigation.Gallery1.IconItem.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Navigation.Gallery1.IconItem.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "Navigation",
+                "type": "Navigation.Gallery1.IconItem"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 3
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Navigation.Gallery1.IconItem.TabIndex"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Navigation.Gallery1.IconItem.TabIndex",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "TabIndex",
+                "module": "Navigation",
+                "type": "Navigation.Gallery1.IconItem"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
+          "ruleIndex": 4
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Navigation.Gallery1.LabelItem.FocusedBorderThickness"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Navigation.Gallery1.LabelItem.FocusedBorderThickness",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "FocusedBorderThickness",
+                "module": "Navigation",
+                "type": "Navigation.Gallery1.LabelItem"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-FocusBorderShouldBeVisible",
+          "ruleIndex": 5
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Navigation.Gallery1.LabelItem.TabIndex"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Navigation.Gallery1.LabelItem.TabIndex",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "TabIndex",
+                "module": "Navigation",
+                "type": "Navigation.Gallery1.LabelItem"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
+          "ruleIndex": 4
         },
         {
           "locations": [
@@ -1216,186 +1396,6 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Navigation.Gallery1.AccessibleLabel"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Navigation.Gallery1.AccessibleLabel",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "AccessibleLabel",
-                "module": "Navigation",
-                "type": "Navigation.Gallery1"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-AccessibleLabelNeeded",
-          "ruleIndex": 3
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Navigation.Gallery1.TabIndex"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Navigation.Gallery1.TabIndex",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "TabIndex",
-                "module": "Navigation",
-                "type": "Navigation.Gallery1"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
-          "ruleIndex": 4
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Navigation.Gallery1.IconItem.AccessibleLabel"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Navigation.Gallery1.IconItem.AccessibleLabel",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "AccessibleLabel",
-                "module": "Navigation",
-                "type": "Navigation.Gallery1.IconItem"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-AccessibleLabelNeeded",
-          "ruleIndex": 3
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Navigation.Gallery1.IconItem.TabIndex"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Navigation.Gallery1.IconItem.TabIndex",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "TabIndex",
-                "module": "Navigation",
-                "type": "Navigation.Gallery1.IconItem"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
-          "ruleIndex": 4
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Navigation.Gallery1.LabelItem.FocusedBorderThickness"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Navigation.Gallery1.LabelItem.FocusedBorderThickness",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "FocusedBorderThickness",
-                "module": "Navigation",
-                "type": "Navigation.Gallery1.LabelItem"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-FocusBorderShouldBeVisible",
-          "ruleIndex": 5
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Navigation.Gallery1.LabelItem.TabIndex"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Navigation.Gallery1.LabelItem.TabIndex",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "TabIndex",
-                "module": "Navigation",
-                "type": "Navigation.Gallery1.LabelItem"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
-          "ruleIndex": 4
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
                   "fullyQualifiedName": "PageHeading.BackBtn.AccessibleLabel"
                 }
               ],
@@ -1456,19 +1456,49 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Appointments Screen.Gallery5.AccessibleLabel"
+                  "fullyQualifiedName": "Profile Screen.LangDropdown.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Appointments Screen.Gallery5.AccessibleLabel",
+                  "fullyQualifiedName": "Profile Screen.LangDropdown.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "Profile Screen",
+                "type": "Profile Screen.LangDropdown"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 3
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Appointments Screen.AppointmentsResultsGallery.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Appointments Screen.AppointmentsResultsGallery.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "Appointments Screen",
-                "type": "Appointments Screen.Gallery5"
+                "type": "Appointments Screen.AppointmentsResultsGallery"
               }
             }
           ],
@@ -1486,19 +1516,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Appointments Screen.Gallery5.TabIndex"
+                  "fullyQualifiedName": "Appointments Screen.AppointmentsResultsGallery.TabIndex"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Appointments Screen.Gallery5.TabIndex",
+                  "fullyQualifiedName": "Appointments Screen.AppointmentsResultsGallery.TabIndex",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "TabIndex",
                 "module": "Appointments Screen",
-                "type": "Appointments Screen.Gallery5"
+                "type": "Appointments Screen.AppointmentsResultsGallery"
               }
             }
           ],
@@ -1516,19 +1546,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Booking Details.CloseIcon.AccessibleLabel"
+                  "fullyQualifiedName": "Appointments Screen.AppointmentsResultsGallery.CardBackground.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Booking Details.CloseIcon.AccessibleLabel",
+                  "fullyQualifiedName": "Appointments Screen.AppointmentsResultsGallery.CardBackground.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
-                "module": "Booking Details",
-                "type": "Booking Details.CloseIcon"
+                "module": "Appointments Screen",
+                "type": "Appointments Screen.AppointmentsResultsGallery.CardBackground"
               }
             }
           ],
@@ -1546,19 +1576,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Booking Details.CloseIcon.TabIndex"
+                  "fullyQualifiedName": "Appointments Screen.AppointmentsResultsGallery.CardBackground.TabIndex"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Booking Details.CloseIcon.TabIndex",
+                  "fullyQualifiedName": "Appointments Screen.AppointmentsResultsGallery.CardBackground.TabIndex",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "TabIndex",
-                "module": "Booking Details",
-                "type": "Booking Details.CloseIcon"
+                "module": "Appointments Screen",
+                "type": "Appointments Screen.AppointmentsResultsGallery.CardBackground"
               }
             }
           ],
@@ -1576,19 +1606,49 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Booking Details.Rectangle1.AccessibleLabel"
+                  "fullyQualifiedName": "Landing Step 1 Screen.HtmlText1.HtmlText"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Booking Details.Rectangle1.AccessibleLabel",
+                  "fullyQualifiedName": "Landing Step 1 Screen.HtmlText1.HtmlText",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "HtmlText",
+                "module": "Landing Step 1 Screen",
+                "type": "Landing Step 1 Screen.HtmlText1"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Low"
+          },
+          "ruleId": "acc-HtmlShouldNotBeInteractive",
+          "ruleIndex": 6
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Landing Step 1 Screen.LangDropdown_1.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Landing Step 1 Screen.LangDropdown_1.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
-                "module": "Booking Details",
-                "type": "Booking Details.Rectangle1"
+                "module": "Landing Step 1 Screen",
+                "type": "Landing Step 1 Screen.LangDropdown_1"
               }
             }
           ],
@@ -1606,19 +1666,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Booking Details.Rectangle1.TabIndex"
+                  "fullyQualifiedName": "Landing Step 2 Screen.HtmlText2.HtmlText"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Booking Details.Rectangle1.TabIndex",
+                  "fullyQualifiedName": "Landing Step 2 Screen.HtmlText2.HtmlText",
                   "relativeAddress": 0
                 }
               },
               "properties": {
-                "member": "TabIndex",
-                "module": "Booking Details",
-                "type": "Booking Details.Rectangle1"
+                "member": "HtmlText",
+                "module": "Landing Step 2 Screen",
+                "type": "Landing Step 2 Screen.HtmlText2"
               }
             }
           ],
@@ -1626,130 +1686,10 @@
             "id": "issue"
           },
           "properties": {
-            "level": "Medium"
+            "level": "Low"
           },
-          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
-          "ruleIndex": 4
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Booking Details.Icon2.AccessibleLabel"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Booking Details.Icon2.AccessibleLabel",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "AccessibleLabel",
-                "module": "Booking Details",
-                "type": "Booking Details.Icon2"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-AccessibleLabelNeeded",
-          "ruleIndex": 3
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Booking Details.Icon2.TabIndex"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Booking Details.Icon2.TabIndex",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "TabIndex",
-                "module": "Booking Details",
-                "type": "Booking Details.Icon2"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
-          "ruleIndex": 4
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Booking Details.Label1.FocusedBorderThickness"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Booking Details.Label1.FocusedBorderThickness",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "FocusedBorderThickness",
-                "module": "Booking Details",
-                "type": "Booking Details.Label1"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-FocusBorderShouldBeVisible",
-          "ruleIndex": 5
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Booking Details.Label1.TabIndex"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Booking Details.Label1.TabIndex",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "TabIndex",
-                "module": "Booking Details",
-                "type": "Booking Details.Label1"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
-          "ruleIndex": 4
+          "ruleId": "acc-HtmlShouldNotBeInteractive",
+          "ruleIndex": 6
         },
         {
           "locations": [
@@ -2236,49 +2176,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Landing Step 1 Screen.HtmlText1.HtmlText"
+                  "fullyQualifiedName": "Booking Details.CloseIcon.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Landing Step 1 Screen.HtmlText1.HtmlText",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "HtmlText",
-                "module": "Landing Step 1 Screen",
-                "type": "Landing Step 1 Screen.HtmlText1"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Low"
-          },
-          "ruleId": "acc-HtmlShouldNotBeInteractive",
-          "ruleIndex": 6
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Landing Step 1 Screen.LangDropdown_1.AccessibleLabel"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Landing Step 1 Screen.LangDropdown_1.AccessibleLabel",
+                  "fullyQualifiedName": "Booking Details.CloseIcon.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
-                "module": "Landing Step 1 Screen",
-                "type": "Landing Step 1 Screen.LangDropdown_1"
+                "module": "Booking Details",
+                "type": "Booking Details.CloseIcon"
               }
             }
           ],
@@ -2296,19 +2206,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Landing Step 2 Screen.HtmlText2.HtmlText"
+                  "fullyQualifiedName": "Booking Details.CloseIcon.TabIndex"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Landing Step 2 Screen.HtmlText2.HtmlText",
+                  "fullyQualifiedName": "Booking Details.CloseIcon.TabIndex",
                   "relativeAddress": 0
                 }
               },
               "properties": {
-                "member": "HtmlText",
-                "module": "Landing Step 2 Screen",
-                "type": "Landing Step 2 Screen.HtmlText2"
+                "member": "TabIndex",
+                "module": "Booking Details",
+                "type": "Booking Details.CloseIcon"
               }
             }
           ],
@@ -2316,29 +2226,29 @@
             "id": "issue"
           },
           "properties": {
-            "level": "Low"
+            "level": "Medium"
           },
-          "ruleId": "acc-HtmlShouldNotBeInteractive",
-          "ruleIndex": 6
+          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
+          "ruleIndex": 4
         },
         {
           "locations": [
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "Profile Screen.LangDropdown.AccessibleLabel"
+                  "fullyQualifiedName": "Booking Details.Rectangle1.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "Profile Screen.LangDropdown.AccessibleLabel",
+                  "fullyQualifiedName": "Booking Details.Rectangle1.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
-                "module": "Profile Screen",
-                "type": "Profile Screen.LangDropdown"
+                "module": "Booking Details",
+                "type": "Booking Details.Rectangle1"
               }
             }
           ],
@@ -2350,6 +2260,186 @@
           },
           "ruleId": "acc-AccessibleLabelNeeded",
           "ruleIndex": 3
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Booking Details.Rectangle1.TabIndex"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Booking Details.Rectangle1.TabIndex",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "TabIndex",
+                "module": "Booking Details",
+                "type": "Booking Details.Rectangle1"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
+          "ruleIndex": 4
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Booking Details.Icon2.AccessibleLabel"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Booking Details.Icon2.AccessibleLabel",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "AccessibleLabel",
+                "module": "Booking Details",
+                "type": "Booking Details.Icon2"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-AccessibleLabelNeeded",
+          "ruleIndex": 3
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Booking Details.Icon2.TabIndex"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Booking Details.Icon2.TabIndex",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "TabIndex",
+                "module": "Booking Details",
+                "type": "Booking Details.Icon2"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
+          "ruleIndex": 4
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Booking Details.Label1.FocusedBorderThickness"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Booking Details.Label1.FocusedBorderThickness",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "FocusedBorderThickness",
+                "module": "Booking Details",
+                "type": "Booking Details.Label1"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-FocusBorderShouldBeVisible",
+          "ruleIndex": 5
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "Booking Details.Label1.TabIndex"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "Booking Details.Label1.TabIndex",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "TabIndex",
+                "module": "Booking Details",
+                "type": "Booking Details.Label1"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "acc-TabIndexShouldBeDefinedForInteractiveControl",
+          "ruleIndex": 4
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "App._appID"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "App._appID",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "_appID",
+                "module": "App",
+                "type": "App"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-UnusedVariables",
+          "ruleIndex": 7
         },
         {
           "locations": [
@@ -2379,7 +2469,7 @@
             "level": "Medium"
           },
           "ruleId": "app-UnusedMediaResources",
-          "ruleIndex": 7
+          "ruleIndex": 8
         },
         {
           "locations": [
@@ -2409,7 +2499,7 @@
             "level": "Medium"
           },
           "ruleId": "app-UnusedVariables",
-          "ruleIndex": 8
+          "ruleIndex": 7
         },
         {
           "locations": [
@@ -2439,37 +2529,7 @@
             "level": "Medium"
           },
           "ruleId": "app-UnusedVariables",
-          "ruleIndex": 8
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "Booking Details.Details_FloorNum.Text"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "Booking Details.Details_FloorNum.Text",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "Text",
-                "module": "Booking Details",
-                "type": "Booking Details.Details_FloorNum"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "app-InefficientDelayLoading",
-          "ruleIndex": 9
+          "ruleIndex": 7
         }
       ],
       "tool": {
@@ -2603,23 +2663,6 @@
               }
             },
             {
-              "id": "app-UnusedMediaResources",
-              "messageStrings": {
-                "issue": {
-                  "text": "Unused media files"
-                }
-              },
-              "properties": {
-                "componentType": "app",
-                "howToFix": [
-                  "Remove the unused media file in the Media pane."
-                ],
-                "level": "Medium",
-                "primaryCategory": "performance",
-                "whyFix": "This media file is not referenced by any control formulas so it is not needed. Removing it will improve performance."
-              }
-            },
-            {
               "id": "app-UnusedVariables",
               "messageStrings": {
                 "issue": {
@@ -2637,20 +2680,20 @@
               }
             },
             {
-              "id": "app-InefficientDelayLoading",
+              "id": "app-UnusedMediaResources",
               "messageStrings": {
                 "issue": {
-                  "text": "Inefficient delay loading"
+                  "text": "Unused media files"
                 }
               },
               "properties": {
                 "componentType": "app",
                 "howToFix": [
-                  "Use variables, collections, and navigation context to share state across screens instead."
+                  "Remove the unused media file in the Media pane."
                 ],
                 "level": "Medium",
                 "primaryCategory": "performance",
-                "whyFix": "Controls that reference controls on other screens can slow down app loading and navigation. Doing this may force the app to load the other screens immediately, rather than waiting until the user navigates to that screen."
+                "whyFix": "This media file is not referenced by any control formulas so it is not needed. Removing it will improve performance."
               }
             }
           ],
